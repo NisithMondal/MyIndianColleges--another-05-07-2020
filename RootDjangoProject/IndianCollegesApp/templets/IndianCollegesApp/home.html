@@ -1,0 +1,37 @@
+{% extends 'IndianCollegesApp/base_templet.html' %}
+
+
+{% block content1 %}
+ {% if isRequestFromHome %}
+  <a href="/states/{{firstState.id}}"> <button type="button" class="btn btn-outline-primary state-name">{{ firstState.state_name }}</button> </a>
+  {% else %}
+  <a href="/states/{{selectedState.id}}"> <button type="button" class="btn btn-outline-primary active state-name">{{ selectedState.state_name }}</button> </a>
+   {% endif %}
+{% endblock %}
+
+
+{% block content2 %}
+  {% for state in otherThreeStates %}
+   <div class="col mb-4 my-states-item">
+   <div class="card-title">
+    	<a href="/states/{{ state.id }}"> <button type="button" class="btn btn-outline-primary state-name">{{state.state_name}}</button> </a>
+    </div>
+    </div>
+ {% endfor %}
+{% endblock %}
+
+
+
+
+{% block content3 %}
+    <button class="btn btn-outline-primary dropdown-toggle state-name" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    More States</button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    {% for state in allStatesListForDropdown %}
+    <a class="dropdown-item" href="/states/{{ state.id }}">{{ state.state_name }}</a>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+
+
