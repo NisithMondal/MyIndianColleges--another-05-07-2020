@@ -72,7 +72,7 @@ body{
    	 	display: block;
    	 }
 
-.nav-item:hover>.nav-link{
+.nav-item:hover>.my_navbar_link{
    	 	background: #0BB244;
    	 }
 
@@ -102,25 +102,29 @@ body{
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-5">
       <li class="nav-item active ml-4 mr-4 " >
-        <a class="nav-link " style="font-size: 20px" href="#">Home <span class="sr-only">(current)</span></a>
+          {% block nav-home %}
+          {% endblock %}
       </li>
 
       <li class="nav-item active mr-4">
-        <a class="nav-link" style="font-size: 20px" href="#" >Engneering Colleges<span class="sr-only">(current)</span></a>
+          {% block nav-eng-college %}
+          {% endblock %}
       </li>
 
        <li class="nav-item active mr-4">
-        <a class="nav-link" style="font-size: 20px" href="#" >Medical Colleges<span class="sr-only">(current)</span></a>
+           {% block nav-medical-college %}
+           {% endblock %}
        </li>
 
 
       <li class="nav-item active mr-4">
-        <a class="nav-link "  style="font-size: 20px" href="#" >Diploma Colleges<span class="sr-only">(current)</span></a>
+          {% block nav-diploma-college %}
+          {% endblock %}
       </li>
 
 
       <li class="nav-item dropdown mr-4">
-        <a class="nav-link dropdown-toggle"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;font-size: 20px;">
+        <a class="nav-link dropdown-toggle my_navbar_link"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;font-size: 20px;">
           Top Colleges
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -131,7 +135,8 @@ body{
       </div>
       </li>
          <li class="nav-item active mr-4">
-        <a class="nav-link" style="font-size: 20px" href="#" >Sign Up<span class="sr-only">(current)</span></a>
+             {% block nav-sing-up %}
+             {% endblock %}
       </li>
     </ul>
   </div>
@@ -155,22 +160,8 @@ body{
     <div style="background: #ffffff">
     <h3 class="nav-heading">Select Cities</h3>
     <div class="container" style="height: 260px;overflow-y: scroll;">
-    <a href="#" class="cityLink" style="background-color: #0DC84D; color: rgb(255,255,255);">Random Cities</a>
-    <a href="#" class="cityLink">West Bengal</a>
-    <a href="#" class="cityLink">Panjab</a>
-    <a href="#" class="cityLink">Hariyana</a>
-    <a href="#" class="cityLink">Bhakura</a>
-    <a href="#" class="cityLink">Purulia</a>
-    <a href="#" class="cityLink">West Bengal</a>
-    <a href="#" class="cityLink">Panjab</a>
-    <a href="#" class="cityLink">Hariyana</a>
-    <a href="#" class="cityLink">Bhakura</a>
-    <a href="#" class="cityLink">Purulia</a>
-    <a href="#" class="cityLink">West Bengal</a>
-    <a href="#" class="cityLink">Panjab</a>
-    <a href="#" class="cityLink">Hariyana</a>
-    <a href="#" class="cityLink">Bhakura</a>
-    <a href="#" class="cityLink">Purulia</a>
+        {% block cities %}
+        {% endblock %}
   </div>
 
   </div>
@@ -289,6 +280,14 @@ body{
       $(".close").click(function(){
          $("#menu").css('width','0px');
       $("#content").css('marginLeft','0px');
+      });
+
+      $(".my_navbar_link").click(function(){
+         $(".my_navbar_link").css('color','#ffffff');
+         $(".my_navbar_link").css('font-size','20px');
+         $(this).css('color','#ee00aa');
+         $(this).css('font-size','23px');
+
       });
 
     });

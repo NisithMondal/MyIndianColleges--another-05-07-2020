@@ -1,37 +1,28 @@
-{% extends 'IndianCollegesApp/base_templet.html' %}
+{% extends 'IndianCollegesApp/second_base_templet.html' %}
 
 
-{% block content1 %}
- {% if isRequestFromHome %}
-  <a href="/states/{{firstState.id}}"> <button type="button" class="btn btn-outline-primary state-name">{{ firstState.state_name }}</button> </a>
-  {% else %}
-  <a href="/states/{{selectedState.id}}"> <button type="button" class="btn btn-outline-primary active state-name">{{ selectedState.state_name }}</button> </a>
-   {% endif %}
+
+
+{% block mynavbar %}
+ {{ block.super }}
+{% block nav-home %}
+    <a class="nav-link my_navbar_link" style="font-size: 20px; background-color: #0BB244;" href="/home/">Home <span class="sr-only">(current)</span></a>
+{% endblock  %}
+
+{% block nav-eng-college %}
+   <a class="nav-link my_navbar_link" style="font-size: 20px" href="/home/" >Engneering Colleges<span class="sr-only">(current)</span></a>
 {% endblock %}
 
-
-{% block content2 %}
-  {% for state in otherThreeStates %}
-   <div class="col mb-4 my-states-item">
-   <div class="card-title">
-    	<a href="/states/{{ state.id }}"> <button type="button" class="btn btn-outline-primary state-name">{{state.state_name}}</button> </a>
-    </div>
-    </div>
- {% endfor %}
+{% block nav-medical-college %}
+    <a class="nav-link my_navbar_link" style="font-size: 20px" href="#" >Medical Colleges<span class="sr-only">(current)</span></a>
 {% endblock %}
 
-
-
-
-{% block content3 %}
-    <button class="btn btn-outline-primary dropdown-toggle state-name" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    More States</button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    {% for state in allStatesListForDropdown %}
-    <a class="dropdown-item" href="/states/{{ state.id }}">{{ state.state_name }}</a>
-    {% endfor %}
-  </div>
+{% block nav-diploma-college %}
+   <a class="nav-link my_navbar_link"  style="font-size: 20px" href="#" >Diploma Colleges<span class="sr-only">(current)</span></a>
 {% endblock %}
 
+{% block nav-sing-up %}
+   <a class="nav-link my_navbar_link" style="font-size: 20px" href="#" >Sign Up<span class="sr-only">(current)</span></a>
+{% endblock %}
 
-
+{% endblock %}
