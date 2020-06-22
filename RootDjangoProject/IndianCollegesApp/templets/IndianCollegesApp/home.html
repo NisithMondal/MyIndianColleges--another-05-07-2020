@@ -1,28 +1,8 @@
-{% extends 'IndianCollegesApp/second_base_templet.html' %}
+{% extends 'IndianCollegesApp/base_templet.html' %}
 
-
-
-
-{% block mynavbar %}
- {{ block.super }}
-{% block nav-home %}
-    <a class="nav-link my_navbar_link" style="font-size: 20px; background-color: #0BB244;" href="/home/">Home <span class="sr-only">(current)</span></a>
-{% endblock  %}
-
-{% block nav-eng-college %}
-   <a class="nav-link my_navbar_link" style="font-size: 20px" href="/home/" >Engneering Colleges<span class="sr-only">(current)</span></a>
+{% block navbar_item_background %}
+  #home_navbar{
+    background-color: #0BB244;
+  }
 {% endblock %}
 
-{% block nav-medical-college %}
-    <a class="nav-link my_navbar_link" style="font-size: 20px" href="#" >Medical Colleges<span class="sr-only">(current)</span></a>
-{% endblock %}
-
-{% block nav-diploma-college %}
-   <a class="nav-link my_navbar_link"  style="font-size: 20px" href="#" >Diploma Colleges<span class="sr-only">(current)</span></a>
-{% endblock %}
-
-{% block nav-sing-up %}
-   <a class="nav-link my_navbar_link" style="font-size: 20px" href="#" >Sign Up<span class="sr-only">(current)</span></a>
-{% endblock %}
-
-{% endblock %}

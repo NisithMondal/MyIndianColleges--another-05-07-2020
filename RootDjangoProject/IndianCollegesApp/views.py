@@ -12,7 +12,68 @@ def home(request):
     otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
                         allStatesListForDropdown.pop(0)]
     isRequestFromHome = True
-    return render(request, 'IndianCollegesApp/second_base_templet.html', {'firstState': firstState, 'allCitiesList': allCitiesList, 'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates, 'isRequestFromHome': isRequestFromHome})
+    return render(request, 'IndianCollegesApp/home.html', {'firstState': firstState, 'allCitiesList': allCitiesList,
+                                                           'allStatesListForDropdown': allStatesListForDropdown,
+                                                           'otherThreeStates': otherThreeStates,
+                                                           'isRequestFromHome': isRequestFromHome})
+
+
+def engneeringColleges(request):
+    allStatesListForDropdown = list(AllStates.objects.all())
+    allCitiesList = list(AllCities.objects.all())
+    firstState = allStatesListForDropdown.pop(0)
+    otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
+                        allStatesListForDropdown.pop(0)]
+    isRequestFromHome = True
+    return render(request, 'IndianCollegesApp/engneering_colleges.html',
+                  {'firstState': firstState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown,
+                   'otherThreeStates': otherThreeStates,
+                   'isRequestFromHome': isRequestFromHome})
+
+
+def medicalColleges(request):
+    allStatesListForDropdown = list(AllStates.objects.all())
+    allCitiesList = list(AllCities.objects.all())
+    firstState = allStatesListForDropdown.pop(0)
+    otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
+                        allStatesListForDropdown.pop(0)]
+    isRequestFromHome = True
+    return render(request, 'IndianCollegesApp/medical_colleges.html',
+                  {'firstState': firstState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown,
+                   'otherThreeStates': otherThreeStates,
+                   'isRequestFromHome': isRequestFromHome})
+
+
+def diplomaColleges(request):
+    allStatesListForDropdown = list(AllStates.objects.all())
+    allCitiesList = list(AllCities.objects.all())
+    firstState = allStatesListForDropdown.pop(0)
+    otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
+                        allStatesListForDropdown.pop(0)]
+    isRequestFromHome = True
+    return render(request, 'IndianCollegesApp/diploma_colleges.html',
+                  {'firstState': firstState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown,
+                   'otherThreeStates': otherThreeStates,
+                   'isRequestFromHome': isRequestFromHome})
+
+
+def topIIT(request):
+    return HttpResponse("Top IIT")
+
+
+def topEngneeringColleges(request):
+    return HttpResponse("Top Engneering Colleges")
+
+
+def topMedicalColleges(request):
+    return HttpResponse("Top Medical Colleges")
+
+
+def topDiplomaColleges(request):
+    return HttpResponse("Top Diploma Colleges")
 
 
 def state(request, state_id):
@@ -23,4 +84,7 @@ def state(request, state_id):
     otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
                         allStatesListForDropdown.pop(0)]
     isRequestFromHome = False
-    return render(request, 'IndianCollegesApp/second_base_templet.html', {'selectedState': selectedState, 'allCitiesList': allCitiesList, 'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates, 'isRequestFromHome': isRequestFromHome})
+    return render(request, 'IndianCollegesApp/home.html',
+                  {'selectedState': selectedState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
+                   'isRequestFromHome': isRequestFromHome})
