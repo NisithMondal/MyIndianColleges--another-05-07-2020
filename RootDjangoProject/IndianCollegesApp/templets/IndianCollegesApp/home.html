@@ -4,5 +4,48 @@
   #home_navbar{
     background-color: #0BB244;
   }
+  #a{{ city_id }}{
+     background-color: #0BB244;
+     color: #ffffff;
+  }
+{% endblock %}
+
+
+{% block city %}
+  {% for city in allCitiesList %}
+<!-- if state value is comming from views then url will be 'home/(state_value)/city/city_id' ,
+     if the 'state' value is not comming from views then 'state' value will consider empty and
+     the url will be 'home/city/city_id' -->
+     <a href="/home{{ state }}/city/{{city.id}}" id="a{{city.id}}"  class="cityLink">{{ city.city_name }}</a>
+  {% endfor %}
+{% endblock %}
+
+
+{% block selected_state %}
+   {% if isStateNotSelected %}
+  <a href="/home/states/{{firstState.id}}"> <button type="button" class="btn btn-outline-primary state-name">{{ firstState.state_name }}</button> </a>
+  {% else %}
+  <a href="/home/states/{{selectedState.id}}"> <button type="button" class="btn btn-outline-primary active state-name">{{ selectedState.state_name }}</button> </a>
+   {% endif %}
+{% endblock %}
+
+
+
+{% block other_state %}
+{% for state in otherThreeStates %}
+   <div class="col mb-4 my-states-item">
+   <div class="card-title">
+    	<a href="/home/states/{{ state.id }}"> <button type="button" class="btn btn-outline-primary state-name">{{state.state_name}}</button> </a>
+    </div>
+    </div>
+ {% endfor %}
+{% endblock %}
+
+
+
+{% block states_dropdown %}
+ {% for state in allStatesListForDropdown %}
+    <a class="dropdown-item" href="/home/states/{{ state.id }}">{{ state.state_name }}</a>
+ {% endfor %}
 {% endblock %}
 

@@ -86,10 +86,6 @@ body{
 .my-states-item{
    	 	margin-top: 30px;
    	 }
-.cityLink:hover{
-    background-color: #5EDE63;
-    color: #ffffff;
-  }
 
    	 {% block navbar_item_background %}
 
@@ -149,13 +145,14 @@ body{
 
 
 
- <div id="content" >
-  <span class="slide" >
-     <a href="#" class="open" >
-        <i class="fas fa-bars" style="margin-top: 65px; color: black;position: fixed;z-index: 4;"></i>
-     </a>
-  </span>
+      <div id="content" >
+      <span class="slide" >
+        <a href="#" class="open" >
+         <i class="fas fa-bars" style="margin-top: 65px; color: black;position: fixed;z-index: 4;"></i>
+        </a>
+      </span>
   <div class="nav" id="menu">
+
     <a href="#" class="close">
       <i class="fas fa-times"></i>
     </a>
@@ -163,9 +160,15 @@ body{
     <div style="background: #ffffff">
     <h3 class="nav-heading">Select Cities</h3>
     <div class="container" style="height: 260px;overflow-y: scroll;">
-        {% block city %}
-
-        {% endblock %}
+       {% if isRequestFromHome %}
+  {% for city in allCitiesList %}
+     <a href="#" class="cityLink">{{ city.city_name }}</a>
+   {% endfor %}
+{% else %}
+   {% for city in allCitiesList %}
+     <a href="#" class="cityLink">{{ city.city_name }}</a>
+   {% endfor %}
+{% endif %}
   </div>
 
   </div>
@@ -207,27 +210,32 @@ body{
 
    <div class="col mb-4 my-states-item">
    <div class="card-title">
-       <!--	<a href="#"> <button type="button" class="btn btn-outline-primary state-name">West Bengal</button> </a> -->
-      {% block selected_state %}
-
-      {% endblock %}
+    	<!--	<a href="#"> <button type="button" class="btn btn-outline-primary state-name">West Bengal</button> </a> -->
+      {% if isRequestFromHome %}
+  <a href="/states/{{firstState.id}}"> <button type="button" class="btn btn-outline-primary state-name">{{ firstState.state_name }}</button> </a>
+  {% else %}
+  <a href="/states/{{selectedState.id}}"> <button type="button" class="btn btn-outline-primary active state-name">{{ selectedState.state_name }}</button> </a>
+   {% endif %}
     </div>
   </div>
 
 
-
-    {% block other_state %}
-
-    {% endblock %}
+   {% for state in otherThreeStates %}
+   <div class="col mb-4 my-states-item">
+   <div class="card-title">
+    	<a href="/states/{{ state.id }}"> <button type="button" class="btn btn-outline-primary state-name">{{state.state_name}}</button> </a>
+    </div>
+    </div>
+ {% endfor %}
 
   <div class="col mb-4 my-states-item">
      	<div class="card-title">
       <button class="btn btn-outline-primary dropdown-toggle state-name" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     More States</button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    {% block states_dropdown %}
-
-    {% endblock %}
+    {% for state in allStatesListForDropdown %}
+    <a class="dropdown-item" href="/states/{{ state.id }}">{{ state.state_name }}</a>
+    {% endfor %}
   </div>
   </div>
   </div>
@@ -264,6 +272,8 @@ body{
 </div>
 
 
+
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -271,6 +281,14 @@ body{
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
    <script>
+      $(".cityLink").click(function(){
+      $(".cityLink").css('background','#ffffff');
+      $(".cityLink").css('color','#000000');
+      $(this).css('background','#0DC84D');
+      $(this).css('color','rgb(255,255,255)');
+
+    });
+
     $(document).ready(function(){
       $("#menu").css('width','250px');
       $("#content").css('marginLeft','250px');
