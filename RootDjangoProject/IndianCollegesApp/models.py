@@ -1,6 +1,9 @@
 from django.db import models
 
 
+
+
+
 class AllStates(models.Model):
     state_name = models.CharField(max_length=1000, unique=True)
 
@@ -25,7 +28,6 @@ class AllColleges(models.Model):
         ('diploma', 'diploma'),
         ('iti', 'ITI'),
     )
-
     type_of_college = (
         ('engneering', 'Engneering College'),
         ('medical', 'Medical College'),
@@ -38,6 +40,10 @@ class AllColleges(models.Model):
         ('private', 'private'),
         ('government', 'government')
     )
+
+    college_images_url: list
+
+
     state_name = models.ForeignKey(AllStates, on_delete=models.CASCADE)
     city_name = models.ForeignKey(AllCities, on_delete=models.CASCADE)
     college_name = models.TextField(null=True, unique=True)
@@ -61,5 +67,3 @@ class AllColleges(models.Model):
 class CollegeImages(models.Model):
     image_url = models.ImageField(upload_to='all_images')
     college_id = models.ForeignKey(AllColleges, on_delete=models.CASCADE)
-
-

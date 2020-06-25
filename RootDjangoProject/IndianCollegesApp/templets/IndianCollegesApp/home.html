@@ -49,3 +49,48 @@
  {% endfor %}
 {% endblock %}
 
+
+{% block all_colleges %}
+  {% for engneeringCollege in allEngneeringColleges %}
+   <div class="col mb-4 mt-3">
+    <div class="card h-100">
+     <div class="card-title">
+      	<h5 style="margin-top: 8px;padding-left: 10px;font-size: 18px;font-style: italic;color: green;">{{ engneeringCollege.college_name }}</h5>
+      	<p style="padding-left: 10px;margin-top: -8px; color: #ee00aa">College Rating: {{engneeringCollege.college_rank}}/5</p>
+      </div>
+      <img src="{{allImages.image_url.url}}" class="card-img-top" alt="..." style="height: 160px; margin-top: -20px;">
+
+        <div class="card-body">
+        <ul style="margin-left: -30px;color: #ee00aa;">
+        	<li><p class="card-text unorder-list-item" >Location: {{ engneeringCollege.city_name }}, {{ engneeringCollege.state_name }}</p></li>
+        	<li><p class="card-text unorder-list-item" >College Type: {{ engneeringCollege.get_college_type_display }}</p></li>
+        	<li> <p class="card-text unorder-list-item" >Established On: {{ engneeringCollege.established_date }}</p></li>
+        	<li><p class="card-text unorder-list-item">Affilicated By: {{ engneeringCollege.affilicated_by }}</p></li>
+        	<li><p class="card-text unorder-list-item">Course Type: {{ engneeringCollege.get_course_type_display }}</p></li>
+        	<li><p class="card-text unorder-list-item" >Course Duration: {{ engneeringCollege.course_duration }}</p></li>
+        	<li><p class="card-text unorder-list-item" >Fees Per Semister: {{ engneeringCollege.college_fees_per_semester }} (Rs)</p></li>
+            <li><p class="card-text unorder-list-item" >Exams For Admission: {{ engneeringCollege.exams_for_admission }}</p></li>
+        	<li><p class="card-text unorder-list-item" >College Site Link: <span><a href="#">{{ engneeringCollege.college_website_link }}</a></span></p></li>
+        </ul>
+      </div>
+     </div>
+    </div>
+   {% endfor %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
