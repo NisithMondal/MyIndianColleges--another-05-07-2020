@@ -25,11 +25,13 @@ def engneeringColleges(request):
     otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
                         allStatesListForDropdown.pop(0)]
     isStateNotSelected = True
+    allEngneeringColleges = AllColleges.objects.filter(college_type='engneering').order_by('-college_rank')
+    allImages = CollegeImages.objects.get(id=4)
     return render(request, 'IndianCollegesApp/engneering_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected})
+                   'isStateNotSelected': isStateNotSelected, 'allEngneeringColleges': allEngneeringColleges, 'allImages': allImages})
 
 
 def medicalColleges(request):
@@ -129,11 +131,14 @@ def engneeringCollegesStateWise(request, state_id):
     otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
                         allStatesListForDropdown.pop(0)]
     isStateNotSelected = False
+    allEngneeringColleges = AllColleges.objects.filter(college_type='engneering', state_name=state_id).order_by('-college_rank')
+    allImages = CollegeImages.objects.get(id=7)
     state = "/state"
     return render(request, 'IndianCollegesApp/engneering_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'state': state})
+                   'isStateNotSelected': isStateNotSelected, 'state': state, 'allEngneeringColleges': allEngneeringColleges,
+                   'allImages': allImages})
 
 
 def engneeringCollegesCityWise(request, city_id):
@@ -143,10 +148,13 @@ def engneeringCollegesCityWise(request, city_id):
     otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
                         allStatesListForDropdown.pop(0)]
     isStateNotSelected = True
+    allEngneeringColleges = AllColleges.objects.filter(college_type='engneering', city_name=city_id).order_by('-college_rank')
+    allImages = CollegeImages.objects.get(id=7)
     return render(request, 'IndianCollegesApp/engneering_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id})
+                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'allEngneeringColleges': allEngneeringColleges,
+                   'allImages': allImages})
 
 
 def engneeringCollegesStateCityWise(request, city_id):
@@ -159,11 +167,14 @@ def engneeringCollegesStateCityWise(request, city_id):
     otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
                         allStatesListForDropdown.pop(0)]
     isStateNotSelected = False
+    allEngneeringColleges = AllColleges.objects.filter(college_type='engneering', city_name=city_id).order_by('-college_rank')
+    allImages = CollegeImages.objects.get(id=7)
     state = "/state"
     return render(request, 'IndianCollegesApp/engneering_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state})
+                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state, 'allEngneeringColleges': allEngneeringColleges,
+                   'allImages': allImages})
 
 
 def medicalCollegesStateWise(request, state_id):
