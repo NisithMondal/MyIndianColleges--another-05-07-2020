@@ -1,0 +1,99 @@
+{% extends 'IndianCollegesApp/base_templet.html' %}
+
+{% block navbar_item_background %}
+  #navbarDropdown{
+    background-color: #0BB244;
+  }
+  #top_medical_college{
+    background-color: #0BB244;
+    color: #ffffff;
+  }
+  #a{{ city_id }}{
+     background-color: #0BB244;
+     color: #ffffff;
+  }
+{% endblock %}
+
+
+{% block city %}
+  {% for city in allCitiesList %}
+<!-- if state value is comming from views then url will be 'home/(state_value)/city/city_id' ,
+     if the 'state' value is not comming from views then 'state' value will consider empty and
+     the url will be 'home/city/city_id' -->
+     <a href="/top-medical-colleges{{ state }}/city/{{city.id}}" id="a{{city.id}}" class="cityLink">{{ city.city_name }}</a>
+  {% endfor %}
+{% endblock %}
+
+
+{% block selected_state %}
+   {% if isStateNotSelected %}
+  <a href="/top-medical-colleges/states/{{firstState.id}}"> <button type="button" class="btn btn-outline-primary state-name">{{ firstState.state_name }}</button> </a>
+  {% else %}
+  <a href="/top-medical-colleges/states/{{selectedState.id}}"> <button type="button" class="btn btn-outline-primary active state-name">{{ selectedState.state_name }}</button> </a>
+   {% endif %}
+{% endblock %}
+
+
+
+{% block other_state %}
+{% for state in otherThreeStates %}
+   <div class="col mb-4 my-states-item">
+   <div class="card-title">
+    	<a href="/top-medical-colleges/states/{{ state.id }}"> <button type="button" class="btn btn-outline-primary state-name">{{state.state_name}}</button> </a>
+    </div>
+    </div>
+ {% endfor %}
+{% endblock %}
+
+
+
+{% block states_dropdown %}
+ {% for state in allStatesListForDropdown %}
+    <a class="dropdown-item" href="/top-medical-colleges/states/{{ state.id }}">{{ state.state_name }}</a>
+ {% endfor %}
+{% endblock %}
+
+
+
+{% block all_colleges %}
+  {% for medicalCollege in topMedicalCollegesList %}
+   <div class="col mb-4 mt-3">
+    <div class="card h-100">
+     <div class="card-title">
+      	<h5 style="margin-top: 8px;padding-left: 10px;font-size: 18px;font-style: italic;color: green;">{{ medicalCollege.college_name }}</h5>
+      	<p style="padding-left: 10px;margin-top: -8px; color: #ee00aa">College Rating: {{medicalCollege.college_rank}}/5</p>
+      </div>
+      <img src="{{medicalCollege.college_images_url.0.image_url.url}}" class="card-img-top" alt="..." style="height: 160px; margin-top: -20px;">
+
+        <div class="card-body">
+        <ul style="margin-left: -30px;color: #ee00aa;">
+        	<li><p class="card-text unorder-list-item" >Location: {{ medicalCollege.city_name }}, {{ medicalCollege.state_name }}</p></li>
+        	<li><p class="card-text unorder-list-item" >College Type: {{ medicalCollege.get_college_type_display }}</p></li>
+        	<li> <p class="card-text unorder-list-item" >Established On: {{ medicalCollege.established_date }}</p></li>
+        	<li><p class="card-text unorder-list-item">Affilicated By: {{ medicalCollege.affilicated_by }}</p></li>
+        	<li><p class="card-text unorder-list-item">Course Type: {{ medicalCollege.get_course_type_display }}</p></li>
+        	<li><p class="card-text unorder-list-item" >Course Duration: {{ medicalCollege.course_duration }}</p></li>
+        	<li><p class="card-text unorder-list-item" >Fees Per Semester: {{ medicalCollege.college_fees_per_semester }} (Rs)</p></li>
+            <li><p class="card-text unorder-list-item" >Exams For Admission: {{ medicalCollege.exams_for_admission }}</p></li>
+        	<li><p class="card-text unorder-list-item" >College Site Link: <span><a href="#">{{ medicalCollege.college_website_link }}</a></span></p></li>
+        </ul>
+      </div>
+     </div>
+    </div>
+   {% endfor %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

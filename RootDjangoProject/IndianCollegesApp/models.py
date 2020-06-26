@@ -67,3 +67,6 @@ class AllColleges(models.Model):
 class CollegeImages(models.Model):
     image_url = models.ImageField(upload_to='all_images')
     college_id = models.ForeignKey(AllColleges, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.college_id.college_name)
