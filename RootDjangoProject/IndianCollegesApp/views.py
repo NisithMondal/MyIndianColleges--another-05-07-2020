@@ -39,7 +39,23 @@ def engneeringColleges(request):
 
 
 def iitColleges(request):
-    return HttpResponse("iit Colleges")
+    allStatesListForDropdown = list(AllStates.objects.all())
+    allCitiesList = list(AllCities.objects.all())
+    firstState = allStatesListForDropdown.pop(0)
+    otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
+                        allStatesListForDropdown.pop(0)]
+    isStateNotSelected = True
+    allIITColleges = AllColleges.objects.filter(college_type='iit').order_by('-college_rank')
+    allIITCollegesList = []
+    for college in allIITColleges:
+        imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
+        college.college_images_url = imagesUrl
+        allIITCollegesList.append(college)
+    return render(request, 'IndianCollegesApp/iit_colleges.html',
+                  {'firstState': firstState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown,
+                   'otherThreeStates': otherThreeStates,
+                   'isStateNotSelected': isStateNotSelected, 'allIITCollegesList': allIITCollegesList})
 
 
 def medicalColleges(request):
@@ -272,6 +288,75 @@ def engneeringCollegesStateCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'allEngneeringCollegesList': allEngneeringCollegesList})
+
+
+def iitCollegesStateWise(request, state_id):
+    allStatesListForDropdown = list(AllStates.objects.exclude(id=state_id))
+    selectedState = AllStates.objects.filter(id=state_id)
+    allCitiesList = list(AllCities.objects.filter(state_id=state_id))
+    selectedState = selectedState[0]
+    otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
+                        allStatesListForDropdown.pop(0)]
+    isStateNotSelected = False
+    allIITColleges = AllColleges.objects.filter(college_type='iit', state_name=state_id).order_by(
+        '-college_rank')
+    allIITCollegesList = []
+    for college in allIITColleges:
+        imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
+        college.college_images_url = imagesUrl
+        allIITCollegesList.append(college)
+    state = "/state"
+    return render(request, 'IndianCollegesApp/iit_colleges.html',
+                  {'selectedState': selectedState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
+                   'isStateNotSelected': isStateNotSelected, 'state': state,
+                   'allIITCollegesList': allIITCollegesList})
+
+
+def iitCollegesCityWise(request, city_id):
+    allStatesListForDropdown = list(AllStates.objects.all())
+    allCitiesList = list(AllCities.objects.all())
+    firstState = allStatesListForDropdown.pop(0)
+    otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
+                        allStatesListForDropdown.pop(0)]
+    isStateNotSelected = True
+    allIITColleges = AllColleges.objects.filter(college_type='iit', city_name=city_id).order_by(
+        '-college_rank')
+    allIITCollegesList = []
+    for college in allIITColleges:
+        imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
+        college.college_images_url = imagesUrl
+        allIITCollegesList.append(college)
+    return render(request, 'IndianCollegesApp/iit_colleges.html',
+                  {'firstState': firstState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
+                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
+                   'allIITCollegesList': allIITCollegesList})
+
+
+def iitCollegesStateCityWise(request, city_id):
+    obj = AllCities.objects.get(id=city_id)
+    state_id = obj.state_id_id
+    allStatesListForDropdown = list(AllStates.objects.exclude(id=state_id))
+    selectedState = AllStates.objects.filter(id=state_id)
+    allCitiesList = list(AllCities.objects.filter(state_id=state_id))
+    selectedState = selectedState[0]
+    otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
+                        allStatesListForDropdown.pop(0)]
+    isStateNotSelected = False
+    allIITColleges = AllColleges.objects.filter(college_type='iit', city_name=city_id).order_by(
+        '-college_rank')
+    allIITCollegesList = []
+    for college in allIITColleges:
+        imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
+        college.college_images_url = imagesUrl
+        allIITCollegesList.append(college)
+    state = "/state"
+    return render(request, 'IndianCollegesApp/iit_colleges.html',
+                  {'selectedState': selectedState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
+                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
+                   'allIITCollegesList': allIITCollegesList})
 
 
 def medicalCollegesStateWise(request, state_id):
@@ -667,4 +752,3 @@ def topIITCollegesStateCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'topIITCollegesList': topIITCollegesList})
-
