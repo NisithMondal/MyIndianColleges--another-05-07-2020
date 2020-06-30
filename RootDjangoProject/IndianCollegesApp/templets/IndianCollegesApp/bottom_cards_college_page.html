@@ -1,0 +1,84 @@
+{% extends 'IndianCollegesApp/base_templet_for_bottom_cards.html' %}
+
+{% block navbar_item_background %}
+  <!--#home_navbar{-->
+    <!--background-color: #0BB244;-->
+  <!--}-->
+  #heading{
+     width: 100%;
+     background-color: #bab5b8;
+     color: #ee00aa;
+     text-align: center;
+     font-style: italic;
+     padding: 10px;
+     margin-top: 30px;
+  }
+
+  .card-text
+{% endblock %}
+
+
+{% block heading %}
+   <h2 id="heading" style="">{{ heading }}</h2>
+{% endblock %}
+
+
+{% block top_colleges %}
+ {% for college in topColleges %}
+   <div class="col mb-4 mt-3">
+    <div class="card h-100">
+      <div class="card-title">
+      	<h5 style="margin-top: 8px;padding-left: 10px;font-size: 18px;font-style: italic;color: green;">{{ college.college_name }}</h5>
+      	<p style="padding-left: 10px;margin-top: -8px; color: #ee00aa">College Rating: {{college.college_rank}}/5</p>
+      </div>
+      <img src="/media/all_images/hit_haldia.jpg" class="card-img-top" alt="..." style="height: 160px; margin-top: -20px;">
+      <div class="card-body" style="color: black;">
+         <ul style="margin-left: -30px;color: #ee00aa;">
+            <li><p class="card-text unorder-list-item" >College Status: {{ college.college_status }}</p></li>
+        	<li><p class="card-text unorder-list-item" >Location: {{ college.city_name }}, {{ engneeringCollege.state_name }}</p></li>
+        	<li><p class="card-text unorder-list-item" >College Type: {{ college.get_college_type_display }}</p></li>
+        	<li> <p class="card-text unorder-list-item" >Established On: {{ college.established_date }}</p></li>
+        	<li><p class="card-text unorder-list-item">Affilicated By: {{ college.affilicated_by }}</p></li>
+        	<li><p class="card-text unorder-list-item">Course Type: {{ college.get_course_type_display }}</p></li>
+        	<li><p class="card-text unorder-list-item" >Course Duration: {{ college.course_duration }}</p></li>
+        	<li><p class="card-text unorder-list-item" >Fees Per Semister: {{ college.college_fees_per_semester }} (Rs)</p></li>
+            <li><p class="card-text unorder-list-item" >Exams For Admission: {{ college.exams_for_admission }}</p></li>
+        	<li><p class="card-text unorder-list-item" >College Site Link: <span><a href="#">{{ college.college_website_link }}</a></span></p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+ {% endfor %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

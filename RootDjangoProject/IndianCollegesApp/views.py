@@ -15,7 +15,8 @@ def home(request):
     return render(request, 'IndianCollegesApp/home.html', {'firstState': firstState, 'allCitiesList': allCitiesList,
                                                            'allStatesListForDropdown': allStatesListForDropdown,
                                                            'otherThreeStates': otherThreeStates,
-                                                           'isStateNotSelected': isStateNotSelected})
+                                                           'isStateNotSelected': isStateNotSelected,
+                                                           'bottomCardLists': getBottomCardsObjectList()})
 
 
 def engneeringColleges(request):
@@ -34,8 +35,8 @@ def engneeringColleges(request):
     return render(request, 'IndianCollegesApp/engneering_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
-                   'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'allEngneeringCollegesList': allEngneeringCollegesList})
+                   'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
+                   'allEngneeringCollegesList': allEngneeringCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def iitColleges(request):
@@ -54,8 +55,8 @@ def iitColleges(request):
     return render(request, 'IndianCollegesApp/iit_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
-                   'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'allIITCollegesList': allIITCollegesList})
+                   'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
+                   'allIITCollegesList': allIITCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def medicalColleges(request):
@@ -72,7 +73,7 @@ def medicalColleges(request):
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'allMedicalColleges': allMedicalColleges,
-                   'allImages': allImages})
+                   'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def diplomaColleges(request):
@@ -89,7 +90,7 @@ def diplomaColleges(request):
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'allDiplomaColleges': allDiplomaColleges,
-                   'allImages': allImages})
+                   'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topIITColleges(request):
@@ -109,8 +110,8 @@ def topIITColleges(request):
     return render(request, 'IndianCollegesApp/top_iit_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
-                   'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'topIITCollegesList': topIITCollegesList})
+                   'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
+                   'topIITCollegesList': topIITCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topEngneeringColleges(request):
@@ -130,8 +131,8 @@ def topEngneeringColleges(request):
     return render(request, 'IndianCollegesApp/top_engneering_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
-                   'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'topEngneeringCollegesList': topEngneeringCollegesList})
+                   'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
+                   'topEngneeringCollegesList': topEngneeringCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topMedicalColleges(request):
@@ -151,8 +152,8 @@ def topMedicalColleges(request):
     return render(request, 'IndianCollegesApp/top_medical_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
-                   'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'topMedicalCollegesList': topMedicalCollegesList})
+                   'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
+                   'topMedicalCollegesList': topMedicalCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topDiplomaColleges(request):
@@ -172,8 +173,8 @@ def topDiplomaColleges(request):
     return render(request, 'IndianCollegesApp/top_diploma_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
-                   'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'topDiplomaCollegesList': topDiplomaCollegesList})
+                   'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
+                   'topDiplomaCollegesList': topDiplomaCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def homeCollegesStateWise(request, state_id):
@@ -241,7 +242,7 @@ def engneeringCollegesStateWise(request, state_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'allEngneeringCollegesList': allEngneeringCollegesList})
+                   'allEngneeringCollegesList': allEngneeringCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def engneeringCollegesCityWise(request, city_id):
@@ -262,7 +263,7 @@ def engneeringCollegesCityWise(request, city_id):
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'allEngneeringCollegesList': allEngneeringCollegesList})
+                   'allEngneeringCollegesList': allEngneeringCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def engneeringCollegesStateCityWise(request, city_id):
@@ -287,7 +288,7 @@ def engneeringCollegesStateCityWise(request, city_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'allEngneeringCollegesList': allEngneeringCollegesList})
+                   'allEngneeringCollegesList': allEngneeringCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def iitCollegesStateWise(request, state_id):
@@ -310,7 +311,7 @@ def iitCollegesStateWise(request, state_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'allIITCollegesList': allIITCollegesList})
+                   'allIITCollegesList': allIITCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def iitCollegesCityWise(request, city_id):
@@ -331,7 +332,7 @@ def iitCollegesCityWise(request, city_id):
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'allIITCollegesList': allIITCollegesList})
+                   'allIITCollegesList': allIITCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def iitCollegesStateCityWise(request, city_id):
@@ -356,7 +357,7 @@ def iitCollegesStateCityWise(request, city_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'allIITCollegesList': allIITCollegesList})
+                   'allIITCollegesList': allIITCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def medicalCollegesStateWise(request, state_id):
@@ -375,7 +376,7 @@ def medicalCollegesStateWise(request, state_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state, 'allMedicalColleges': allMedicalColleges,
-                   'allImages': allImages})
+                   'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def medicalCollegesCityWise(request, city_id):
@@ -391,7 +392,7 @@ def medicalCollegesCityWise(request, city_id):
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'allMedicalColleges': allMedicalColleges, 'allImages': allImages})
+                   'allMedicalColleges': allMedicalColleges, 'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def medicalCollegesStateCityWise(request, city_id):
@@ -411,7 +412,7 @@ def medicalCollegesStateCityWise(request, city_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'allMedicalColleges': allMedicalColleges, 'allImages': allImages})
+                   'allMedicalColleges': allMedicalColleges, 'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def diplomaCollegesStateWise(request, state_id):
@@ -430,7 +431,7 @@ def diplomaCollegesStateWise(request, state_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state, 'allDiplomaColleges': allDiplomaColleges,
-                   'allImages': allImages})
+                   'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def diplomaCollegesCityWise(request, city_id):
@@ -446,7 +447,7 @@ def diplomaCollegesCityWise(request, city_id):
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'allDiplomaColleges': allDiplomaColleges, 'allImages': allImages})
+                   'allDiplomaColleges': allDiplomaColleges, 'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def diplomaCollegesStateCityWise(request, city_id):
@@ -466,7 +467,7 @@ def diplomaCollegesStateCityWise(request, city_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'allDiplomaColleges': allDiplomaColleges, 'allImages': allImages})
+                   'allDiplomaColleges': allDiplomaColleges, 'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topEngneeringCollegesStateWise(request, state_id):
@@ -490,7 +491,7 @@ def topEngneeringCollegesStateWise(request, state_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'topEngneeringCollegesList': topEngneeringCollegesList})
+                   'topEngneeringCollegesList': topEngneeringCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topEngneeringCollegesCityWise(request, city_id):
@@ -512,7 +513,7 @@ def topEngneeringCollegesCityWise(request, city_id):
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'topEngneeringCollegesList': topEngneeringCollegesList})
+                   'topEngneeringCollegesList': topEngneeringCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topEngneeringCollegesStateCityWise(request, city_id):
@@ -538,7 +539,7 @@ def topEngneeringCollegesStateCityWise(request, city_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'topEngneeringCollegesList': topEngneeringCollegesList})
+                   'topEngneeringCollegesList': topEngneeringCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topMedicalCollegesStateWise(request, state_id):
@@ -562,7 +563,7 @@ def topMedicalCollegesStateWise(request, state_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'topMedicalCollegesList': topMedicalCollegesList})
+                   'topMedicalCollegesList': topMedicalCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topMedicalCollegesCityWise(request, city_id):
@@ -584,7 +585,7 @@ def topMedicalCollegesCityWise(request, city_id):
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'topMedicalCollegesList': topMedicalCollegesList})
+                   'topMedicalCollegesList': topMedicalCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topMedicalCollegesStateCityWise(request, city_id):
@@ -610,7 +611,7 @@ def topMedicalCollegesStateCityWise(request, city_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'topMedicalCollegesList': topMedicalCollegesList})
+                   'topMedicalCollegesList': topMedicalCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topDiplomaCollegesStateWise(request, state_id):
@@ -634,7 +635,7 @@ def topDiplomaCollegesStateWise(request, state_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'topDiplomaCollegesList': topDiplomaCollegesList})
+                   'topDiplomaCollegesList': topDiplomaCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topDiplomaCollegesCityWise(request, city_id):
@@ -656,7 +657,7 @@ def topDiplomaCollegesCityWise(request, city_id):
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'topDiplomaCollegesList': topDiplomaCollegesList})
+                   'topDiplomaCollegesList': topDiplomaCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topDiplomaCollegesStateCityWise(request, city_id):
@@ -682,7 +683,7 @@ def topDiplomaCollegesStateCityWise(request, city_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'topDiplomaCollegesList': topDiplomaCollegesList})
+                   'topDiplomaCollegesList': topDiplomaCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topIITCollegesStateWise(request, state_id):
@@ -705,7 +706,7 @@ def topIITCollegesStateWise(request, state_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'topIITCollegesList': topIITCollegesList})
+                   'topIITCollegesList': topIITCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topIITCollegesCityWise(request, city_id):
@@ -726,7 +727,7 @@ def topIITCollegesCityWise(request, city_id):
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'topIITCollegesList': topIITCollegesList})
+                   'topIITCollegesList': topIITCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
 
 
 def topIITCollegesStateCityWise(request, city_id):
@@ -751,4 +752,66 @@ def topIITCollegesStateCityWise(request, city_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'topIITCollegesList': topIITCollegesList})
+                   'topIITCollegesList': topIITCollegesList, 'bottomCardLists': getBottomCardsObjectList()})
+
+
+def topGovernmentEngineeringColleges(request):
+    topColleges = AllColleges.objects.filter(college_rank__gte=4, college_type='engneering',
+                                             college_status='government').order_by('-college_rank')
+    heading = 'Top Government Engineering Colleges in India'
+    return render(request, 'IndianCollegesApp/bottom_cards_college_page.html', {
+        'topColleges': topColleges, 'heading': heading
+    })
+
+
+def topPrivateEngineeringColleges(request):
+    topColleges = AllColleges.objects.filter(college_rank__gte=4, college_type='engneering',
+                                             college_status='private').order_by(
+        '-college_rank')
+    heading = 'Top Private Engineering Colleges in India'
+    return render(request, 'IndianCollegesApp/bottom_cards_college_page.html', {
+        'topColleges': topColleges, 'heading': heading
+    })
+
+
+def topGovernmentMedicalColleges(request):
+    topColleges = AllColleges.objects.filter(college_rank__gte=4, college_type='medical',
+                                             college_status='government').order_by('-college_rank')
+    heading = 'Top Government Medical Colleges in India'
+    return render(request, 'IndianCollegesApp/bottom_cards_college_page.html', {
+        'topColleges': topColleges, 'heading': heading
+    })
+
+
+def topGovernmentDiplomaColleges(request):
+    topColleges = AllColleges.objects.filter(college_rank__gte=4, college_type='diploma',
+                                             college_status='government').order_by('-college_rank')
+    heading = 'Top Government Diploma Colleges in India'
+    return render(request, 'IndianCollegesApp/bottom_cards_college_page.html', {
+        'topColleges': topColleges, 'heading': heading
+    })
+
+
+def topPrivateDiplomaColleges(request):
+    topColleges = AllColleges.objects.filter(college_rank__gte=4, college_type='diploma',
+                                             college_status='private').order_by('-college_rank')
+    heading = 'Top Private Diploma Colleges in India'
+    return render(request, 'IndianCollegesApp/bottom_cards_college_page.html', {
+        'topColleges': topColleges, 'heading': heading
+    })
+
+
+def getBottomCardsObjectList():
+    description = 'Get all top colleges name, their rank, semister fees, college official site link and manny more details.'
+    card1 = MyBottomCard('Top Government Engineering Colleges in India', description,
+                         '/top-government-engineering-colleges/', '/media/all_images/heritage.jpg', '#80c497')
+    card2 = MyBottomCard('Top Private Engineering Colleges in India', description, '/top-private-engineering-colleges/',
+                         '/media/all_images/heritage2.jpg', '#ba80c4')
+    card3 = MyBottomCard('Top Government Medical Colleges in India', description, '/top-government-medical-colleges/',
+                         '/media/all_images/hit_haldia3.jpg', '#46f252')
+    card4 = MyBottomCard('Top Government Diploma Colleges in India', description, '/top-government-diploma-colleges/',
+                         '/media/all_images/hit_haldia.jpg', '#e6aa73')
+    card5 = MyBottomCard('Top Private Diploma Colleges in India', description, '/top-private-diploma-colleges/',
+                         '/media/all_images/medical2_PeOtCx2.jpg', '#eb6ab7')
+    bottomCardLists = [card1, card2, card3, card4, card5]
+    return bottomCardLists

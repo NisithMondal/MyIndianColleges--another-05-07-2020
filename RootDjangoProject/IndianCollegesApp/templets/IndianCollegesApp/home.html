@@ -38,7 +38,7 @@
 
 
 {% block first-carousel-engneering-more-college-link %}
-<a href="#" class="btn btn-primary see-more-college">See More Engneering Colleges And Their Detailed Information</a>
+<a href="/top-engneering-colleges/" class="btn btn-primary see-more-college">See More Engineering Colleges And Their Detailed Information</a>
 {% endblock %}
 
 
@@ -77,7 +77,7 @@
 
 
 {% block second-carousel-medical-more-college-link %}
-<a href="#" class="btn btn-primary see-more-college"  >See More Medical Colleges And Their Detailed Information</a>
+<a href="/top-medical-colleges/" class="btn btn-primary see-more-college"  >See More Medical Colleges And Their Detailed Information</a>
 {% endblock %}
 
 
@@ -111,7 +111,7 @@
 {% endblock %}
 
 {% block third-carousel-iit-more-college-link %}
-<a href="#" class="btn btn-primary see-more-college">See More IIT Colleges And Their Detailed Information</a>
+<a href="/top-iit/" class="btn btn-primary see-more-college">See More IIT Colleges And Their Detailed Information</a>
 {% endblock %}
 
 
@@ -145,7 +145,23 @@
 {% endblock %}
 
 {% block fourth-carousel-diploma-more-college-link %}
-  <a href="#" class="btn btn-primary see-more-college">See More Diploma Colleges And Their Detailed Information</a>
+  <a href="/top-diploma-colleges/" class="btn btn-primary see-more-college">See More Diploma Colleges And Their Detailed Information</a>
+{% endblock %}
+
+
+{% block bottom_card_items %}
+ {% for card in bottomCardLists %}
+  <div class="col mb-4 mt-3">
+  <div class="card">
+  <img class="card-img-top" src="{{ card.card_image_url }}" alt="Card image cap" height="170px">
+  <div class="card-body" style="background-color: {{card.card_color}};">
+    <h5 class="card-title">{{ card.card_title }}</h5>
+    <p class="card-text" style="text-align: justify;">{{ card.card_description }}</p>
+    <a href="{{card.link_url}}" class="btn btn-primary see-more-college">See Colleges</a>
+  </div>
+  </div>
+  </div>
+ {% endfor %}
 {% endblock %}
 
 

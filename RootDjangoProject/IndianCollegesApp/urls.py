@@ -51,7 +51,11 @@ urlpatterns = [
     path('top-iit-colleges/city/<int:city_id>/', views.topIITCollegesCityWise),
     path('top-iit-colleges/state/city/<int:city_id>/', views.topIITCollegesStateCityWise),
 
-
+    path('top-government-engineering-colleges/', views.topGovernmentEngineeringColleges),
+    path('top-private-engineering-colleges/', views.topPrivateEngineeringColleges),
+    path('top-government-medical-colleges/', views.topGovernmentMedicalColleges),
+    path('top-government-diploma-colleges/', views.topGovernmentDiplomaColleges),
+    path('top-private-diploma-colleges/', views.topPrivateDiplomaColleges),
 
 
 ]

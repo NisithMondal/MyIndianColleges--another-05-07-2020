@@ -40,13 +40,7 @@ body{
   border-top: 1px solid #E5E9E5;
 
 }
-.close{
-  position: absolute;
-  top: 8px;
-  right: 30px;
-  font-size: 40px;
-  color: red;
-}
+
 
 #content{
   padding: 20px;
@@ -64,9 +58,6 @@ body{
   background-color: #aa00ee;
 }
 
-.state-name{
-  font-size: 15px;
-}
 
  .dropdown:hover>.dropdown-menu{
    	 	display: block;
@@ -76,38 +67,16 @@ body{
    	 	background: #0BB244;
    	 }
 
-.btn-toolbar.btn-group:click{
-   	 	background: #000000;
-   	 }
-.unorder-list-item{
-   	 	color:  black;
-   	 }
-
-.my-states-item{
-   	 	margin-top: 30px;
-   	 }
-.cityLink:hover{
-    background-color: #5EDE63;
-    color: #ffffff;
-  }
-
-   #heading{
-     width: 100%;
-     background-color: #bab5b8;
-     color: #ee00aa;
-     text-align: center;
-     font-style: italic;
-     padding: 10px;
-     margin-top: 30px;
-  }
-
-  .see-more-college:hover{
+.see-more-college:hover{
         background-color: #e8057e;
       }
-  .see-more-college{
+.see-more-college{
         font-size: 18px;
         margin-bottom: 7px;
       }
+.unorder-list-item{
+   	 	color:  black;
+   	 }
 
    	 {% block navbar_item_background %}
 
@@ -168,119 +137,28 @@ body{
   </div>
 </nav>
 
+ <div style=" padding: 20px;">
+ <div class="container-fluid" style="background-color: #E2E8E5; margin-top: 55px; height: 100%;">
 
 
 
- <div id="content" >
-  <span class="slide" >
-     <a href="#" class="open" >
-        <i class="fas fa-bars" style="margin-top: 65px; color: black;position: fixed;z-index: 4;"></i>
-     </a>
-  </span>
-  <div class="nav" id="menu">
-    <a href="#" class="close">
-      <i class="fas fa-times"></i>
-    </a>
+ {% block heading %}
+ {% endblock %}
 
-    <div style="background: #ffffff">
-    <h3 class="nav-heading">Select City</h3>
-    <div class="container" style="height: 260px;overflow-y: scroll;">
-        {% block city %}
-
-        {% endblock %}
-  </div>
-
-  </div>
-
-
-<div style="background: #ffffff;margin-top: 20px;height: 100px;">
- <h3 class="nav-heading">Filter By College Type</h3>
-    <div class="container" style="height: 50px;">
-    <a href="#" class="cityLink">1. Government</a>
-    <a href="#" class="cityLink">2. Private</a>
-  </div>
+ <div class="row row-cols-1 row-cols-md-4" >
+     {% block top_colleges %}
+     {% endblock %}
 </div>
-
-
-<div style="background: #ffffff;margin-top: 20px;height: 260px;">
-   <h3 class="nav-heading">Filter By Semister Fees</h3>
-    <div class="container" style="height: 50px; margin-bottom: 100px;">
-    <a href="#" class="cityLink">a. 100000 Or Less</a>
-    <a href="#" class="cityLink">b. 80,000 Or Less</a>
-    <a href="#" class="cityLink">c. 60,000 Or Less</a>
-    <a href="#" class="cityLink">d. 50,000 Or Less</a>
-    <a href="#" class="cityLink">e. 30,000 Or Less</a>
-  </div>
-</div>
-</div>
-
-
-
- <div class="container" style="background-color: #E2E8E5; margin-top: 63px;">
-
-<div class="row row-cols-1 row-cols-md-6">
-  <div class="col mb-4 my-states-item">
-
-    	<div class="card-title">
-    		<h4 style="color: #fc6703;">Select State:</h4>
-    	</div>
-
-  </div>
-
-   <div class="col mb-4 my-states-item">
-   <div class="card-title">
-       <!--	<a href="#"> <button type="button" class="btn btn-outline-primary state-name">West Bengal</button> </a> -->
-      {% block selected_state %}
-
-      {% endblock %}
-    </div>
-  </div>
-
-
-
-    {% block other_state %}
-
-    {% endblock %}
-
-  <div class="col mb-4 my-states-item">
-     	<div class="card-title">
-      <button class="btn btn-outline-primary dropdown-toggle state-name" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    More States</button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    {% block states_dropdown %}
-
-    {% endblock %}
-  </div>
-  </div>
-  </div>
-</div>
-  </div>
-
-
-  <div class="container" style="background-color: #E2E8E5; margin-top: 20px; height: 100%;">
-  <div class="row row-cols-1 row-cols-md-3" >
-
-        {% block all_colleges %}
-
-        {% endblock %}
-
-</div>
-</div>
-
- <!-- bellow is bottom Cards start-->
-  <div class="container" style="background-color: #E2E8E5; margin-top: 55px; height: 100%;">
-   <h2 id="heading">SEE  MORE  COLLEGES</h2>
- <div class="row row-cols-1 row-cols-md-3" >
-   {% block bottom_card_items %}
-   {% endblock %}
-</div>
-  <!-- bottom Cards code end -->
-
 
 
 
  </div>
 </div>
+
+
+
+
+
 
 
     <!-- Optional JavaScript -->
@@ -290,21 +168,7 @@ body{
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
    <script>
-    $(document).ready(function(){
-      $("#menu").css('width','250px');
-      $("#content").css('marginLeft','250px');
-      $(".open").click(function(){
-         $("#menu").css('width','250px');
-      $("#content").css('marginLeft','250px');
-      });
 
-      $(".close").click(function(){
-         $("#menu").css('width','0px');
-      $("#content").css('marginLeft','0px');
-      });
-
-
-    });
  </script>
 
   </body>

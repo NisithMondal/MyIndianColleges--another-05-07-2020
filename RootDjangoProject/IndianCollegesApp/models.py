@@ -1,9 +1,6 @@
 from django.db import models
 
 
-
-
-
 class AllStates(models.Model):
     state_name = models.CharField(max_length=1000, unique=True)
 
@@ -43,7 +40,6 @@ class AllColleges(models.Model):
 
     college_images_url: list
 
-
     state_name = models.ForeignKey(AllStates, on_delete=models.CASCADE)
     city_name = models.ForeignKey(AllCities, on_delete=models.CASCADE)
     college_name = models.TextField(null=True, unique=True)
@@ -70,3 +66,18 @@ class CollegeImages(models.Model):
 
     def __str__(self):
         return str(self.college_id.college_name)
+
+
+class MyBottomCard:
+    card_title: str
+    card_description: str
+    link_url: str
+    card_image_url: str
+    card_color: str
+
+    def __init__(self, card_title, card_description, link_url, card_image_url, card_color):
+        self.card_title = card_title
+        self.card_description = card_description
+        self.link_url = link_url
+        self.card_image_url = card_image_url
+        self.card_color = card_color
