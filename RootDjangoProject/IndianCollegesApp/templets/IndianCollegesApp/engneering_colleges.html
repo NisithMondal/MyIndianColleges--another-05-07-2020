@@ -51,6 +51,10 @@
 
 
 
+{% block body_title %}
+ <h2 id="body-title">{{ bodyTitle }}</h2>
+{% endblock %}
+
 {% block all_colleges %}
   {% for engneeringCollege in allEngneeringCollegesList %}
    <div class="col mb-4 mt-3">

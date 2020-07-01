@@ -96,7 +96,7 @@ body{
      background-color: #bab5b8;
      color: #ee00aa;
      text-align: center;
-     font-style: italic;
+     font-style: bold;
      padding: 10px;
      margin-top: 30px;
   }
@@ -108,6 +108,13 @@ body{
         font-size: 18px;
         margin-bottom: 7px;
       }
+
+  #body-title{
+      color: #ee00aa;
+      text-align: center;
+      background-color: #0be6ab;
+      padding: 10px;
+  }
 
    	 {% block navbar_item_background %}
 
@@ -224,7 +231,6 @@ body{
     	<div class="card-title">
     		<h4 style="color: #fc6703;">Select State:</h4>
     	</div>
-
   </div>
 
    <div class="col mb-4 my-states-item">
@@ -258,6 +264,8 @@ body{
 
 
   <div class="container" style="background-color: #E2E8E5; margin-top: 20px; height: 100%;">
+   {% block body_title %}
+   {% endblock %}
   <div class="row row-cols-1 row-cols-md-3" >
 
         {% block all_colleges %}
@@ -268,8 +276,8 @@ body{
 </div>
 
  <!-- bellow is bottom Cards start-->
-  <div class="container" style="background-color: #E2E8E5; margin-top: 55px; height: 100%;">
-   <h2 id="heading">SEE  MORE  COLLEGES</h2>
+  <div class="container" style="background-color: #E2E8E5; margin-top: 85px; height: 100%;">
+   <h2 id="heading">See More Colleges</h2>
  <div class="row row-cols-1 row-cols-md-3" >
    {% block bottom_card_items %}
    {% endblock %}

@@ -15,10 +15,6 @@ urlpatterns = [
     path('top-medical-colleges/', views.topMedicalColleges),
     path('top-diploma-colleges/', views.topDiplomaColleges),
 
-    path('home/states/<int:state_id>/', views.homeCollegesStateWise),
-    path('home/city/<int:city_id>/', views.homeCollegesCityWise),
-    path('home/state/city/<int:city_id>/', views.homeCollegesStateCityWise),
-
     path('engneering-colleges/states/<int:state_id>/', views.engneeringCollegesStateWise),
     path('engneering-colleges/city/<int:city_id>/', views.engneeringCollegesCityWise),
     path('engneering-colleges/state/city/<int:city_id>/', views.engneeringCollegesStateCityWise),
@@ -56,6 +52,7 @@ urlpatterns = [
     path('top-government-medical-colleges/', views.topGovernmentMedicalColleges),
     path('top-government-diploma-colleges/', views.topGovernmentDiplomaColleges),
     path('top-private-diploma-colleges/', views.topPrivateDiplomaColleges),
+    path('top-best-iit-colleges/', views.topBestIITColleges)
 
 
 ]
