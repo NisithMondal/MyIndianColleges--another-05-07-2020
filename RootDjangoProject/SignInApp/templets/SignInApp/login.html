@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <title>login</title>
+    <style type="text/css">
+
+      body{
+        background: url(/media/static_images/login11.jpg);
+      }
+      .form-control{
+        padding-left: 30px;
+      }
+
+      form{
+        width: 27%;
+        margin: auto;
+        margin-top: 30px;
+
+      }
+      .submit-button{
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        font-style: bold;
+
+      }
+      h3{
+        width: 100%;
+        text-align: center;
+        margin-top: 200px;
+        color: #ffffff;
+      }
+      .input-field-icon{
+        margin-top: -26px;
+        margin-left: 5px;
+        color: #9fa6a1;
+        position: absolute;
+      }
+
+      #error-message{
+        color: #f5c107;
+        font-size: 16px;
+      }
+    </style>
+
+  </head>
+  <body>
+
+
+
+    <h3 style=""><span style="color: white;">User</span> <span style="color: orange">Login</span></h3>
+    <form action="/user/login/" method="post">
+     {% csrf_token %}
+   {% for message in messages %}
+   <p id="error-message">{{ message }}</p>
+   {% endfor %}
+  <div class="form-group">
+     {% if isPostRequest %}
+       <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" value={{email}} name="email">
+     {% else %}
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="email">
+    {% endif %}
+    <i class="fas fa-envelope input-field-icon"></i>
+  </div>
+  <div class="form-group">
+   {% if isPostRequest %}
+    <input type="password" class="form-control" id="exampleInputPassword2" value={{password}} name="password">
+   {% else %}
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+   {% endif %}
+    <i class="fas fa-key input-field-icon"></i>
+  </div>
+  <button type="submit" class="btn btn-success submit-button">Login</button>
+</form>
+      <h3><a href="/home/">Go to Home Page</a></h3>
+<div>
+
+
+
+
+</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>

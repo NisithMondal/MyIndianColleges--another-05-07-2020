@@ -46,7 +46,7 @@ ROOT_URLCONF = 'RootDjangoProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['IndianCollegesApp/templets' ],
+        'DIRS': ['IndianCollegesApp/templets', 'SignInApp/templets', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

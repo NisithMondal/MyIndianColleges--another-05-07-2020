@@ -95,31 +95,31 @@ body{
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-5">
-      <li class="nav-item active ml-4 mr-4 " >
+    <ul class="navbar-nav">
+      <li class="nav-item active ml-3 mr-3 " >
               <a class="nav-link my_navbar_link " id="home_navbar" style="font-size: 20px;" href="/home/">Home <span class="sr-only">(current)</span></a>
       </li>
 
-      <li class="nav-item active mr-4">
+      <li class="nav-item active mr-3">
           <a class="nav-link my_navbar_link" id="eng_colleges_navbar" style="font-size: 20px" href="/engneering-colleges/" >Engneering Colleges<span class="sr-only">(current)</span></a>
       </li>
 
-      <li class="nav-item active mr-4">
+      <li class="nav-item active mr-3">
            <a class="nav-link my_navbar_link" id="iit_colleges_navbar" style="font-size: 20px" href="/iit-colleges/" >IIT Colleges<span class="sr-only">(current)</span></a>
        </li>
 
-       <li class="nav-item active mr-4">
+       <li class="nav-item active mr-3">
            <a class="nav-link my_navbar_link" id="medical_colleges_navbar" style="font-size: 20px" href="/medical-colleges/" >Medical Colleges<span class="sr-only">(current)</span></a>
        </li>
 
 
-      <li class="nav-item active mr-4">
+      <li class="nav-item active mr-3">
           <a class="nav-link my_navbar_link" id="diploma_colleges_navbar"  style="font-size: 20px" href="/diploma-colleges/" >Diploma Colleges<span class="sr-only">(current)</span></a>
 
       </li>
 
 
-      <li class="nav-item dropdown mr-4">
+      <li class="nav-item dropdown mr-3">
         <a class="nav-link dropdown-toggle my_navbar_link"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;font-size: 20px;">
           Top Colleges
         </a>
@@ -130,9 +130,21 @@ body{
           <a class="dropdown-item" id="top_eng_college"  href="/top-engneering-colleges/">Top Engneering Colleges</a>
       </div>
       </li>
-         <li class="nav-item active mr-4">
-            <a class="nav-link my_navbar_link" id="link_navbar" style="font-size: 20px" href="#" >Sign Up<span class="sr-only">(current)</span></a>
-      </li>
+       {% if user.is_authenticated %}
+          <li class="nav-item active mr-3">
+            <a class="nav-link my_navbar_link" id="link_navbar2" style="font-size: 20px" href="/user/logout/" >Logout<span class="sr-only">(current)</span></a>
+         </li>
+        <li class="nav-item active mr-3">
+            <a class="nav-link my_navbar_link" id="link_navbar3" style="font-size: 20px" href="#" >Hello {{user.first_name}}<span class="sr-only">(current)</span></a>
+         </li>
+        {% else %}
+         <li class="nav-item active mr-3">
+            <a class="nav-link my_navbar_link" id="link_navbar" style="font-size: 20px" href="/user/sign-in/" >Sign-in<span class="sr-only">(current)</span></a>
+         </li>
+         <li class="nav-item active mr-3">
+            <a class="nav-link my_navbar_link" id="link_navbar1" style="font-size: 20px" href="/user/login/" >Login<span class="sr-only">(current)</span></a>
+         </li>
+        {% endif %}
     </ul>
   </div>
 </nav>
