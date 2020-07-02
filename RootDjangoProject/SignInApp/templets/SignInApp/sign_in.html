@@ -26,6 +26,12 @@
         padding: 20px;
         margin-top: 100px;
       }
+
+      #div1{
+          width: 35%;
+          margin: auto;
+      }
+
       .submit-button{
         width: 100%;
         text-align: center;
@@ -48,65 +54,81 @@
       .error-message{
         color: #dcfa57;
       }
+      .message{
+         color: white;
+         font-size: 16px;
+      }
     </style>
 
   </head>
   <body>
 
 
-    <form action="/user/sign-in/" method="post">
+    <form action="/user/sign-in/" method="post" onsubmit="return formValidation()">
         {% csrf_token %}
     <h3 style=""><span style="color: white;">Sign</span> <span style="color: orange">In</span></h3>
    <div class="form-group">
     {% if isPostRequest %}
-    <input type="text" class="form-control" id="exampleInputFirstName1" aria-describedby="emailHelp" value={{firstName}}  name="first_name">
+    <input type="text" class="form-control exampleInputFirstName" aria-describedby="emailHelp"   name="first_name" value={{firstName}}>
     {% else %}
-    <input type="text" class="form-control" id="exampleInputFirstName2" aria-describedby="emailHelp" placeholder="First Name"  name="first_name">
+    <input type="text" class="form-control exampleInputFirstName" aria-describedby="emailHelp"   name="first_name" placeholder="First Name">
     {% endif %}
     <i class="fas fa-user input-field-icon"></i>
+    <p id="first_name_error_message" class="message"></p>
   </div>
 
   <div class="form-group">
    {% if isPostRequest %}
-    <input type="text" class="form-control" id="exampleInputLastName1" aria-describedby="emailHelp" value={{lastName}} name="last_name">
+    <input type="text" class="form-control exampleInputLastName" aria-describedby="emailHelp"  name="last_name" value={{lastName}}>
    {% else %}
-    <input type="text" class="form-control" id="exampleInputLastName2" aria-describedby="emailHelp" placeholder="Last Name" name="last_name">
+    <input type="text" class="form-control exampleInputLastName" aria-describedby="emailHelp" name="last_name" placeholder="Last Name" >
    {% endif %}
     <i class="fas fa-user input-field-icon"></i>
+    <p id="last_name_error_message" class="message"></p>
   </div>
 
   <div class="form-group">
   {% if isPostRequest %}
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={{email}} name="email">
+    <input type="email" class="form-control exampleInputEmail" aria-describedby="emailHelp" name="email" value={{email}} >
   {% else %}
-      <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Email" name="email">
+      <input type="email" class="form-control exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" name="email">
   {% endif %}
    <i class="fas fa-envelope input-field-icon"></i>
+      <!-- Due to some error i use to <p></p> tag to show error message. Because second <p id="email_error_message"></p>
+       object value is 'null' in Javascript -->
+   <p id="another_email_error_message" class="message">{{ message }}</p>
    {% for message in messages %}
-     <small id="emailHelp"  class="error-message">{{ message }}</small>
+     <p id="email_error_message" class="message">{{ message }}</p>
    {% endfor %}
   </div>
 
   <div class="form-group">
    {% if isPostRequest %}
-    <input type="password" class="form-control" id="exampleInputPassword1" value={{password}} name="password">
+    <input type="password" class="form-control exampleInputPassword1"  name="password1" value={{password}}>
    {% else %}
-    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" name="password">
+    <input type="password" class="form-control exampleInputPassword1" placeholder="Password" name="password1">
    {% endif %}
     <i class="fas fa-key input-field-icon"></i>
+    <p id="password1_error_message" class="message" ></p>
   </div>
 
   <div class="form-group">
   {% if isPostRequest %}
-    <input type="password" class="form-control" id="exampleInputPassword3" value={{password}} name="password">
+    <input type="password" class="form-control exampleInputPassword2"  name="password2" value={{password}}>
    {% else %}
-    <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password" name="password">
+    <input type="password" class="form-control exampleInputPassword2" placeholder="Password" name="password2">
    {% endif %}
     <i class="fas fa-key input-field-icon"></i>
+    <p id="password2_error_message" class="message"></p>
   </div>
-
   <button type="submit" class="btn btn-success submit-button">Sign In</button>
+
 </form>
+
+ <div id="div1">
+   <a href="/home/" class="btn btn-light" style="margin-top: 10px; margin-right: 5px;">Home</a>
+   <a href="/user/login/" class="btn btn-warning" style="margin-top: 10px; margin-left:5px;">Login</a>
+ </div>
 
 
 
@@ -115,5 +137,60 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <script>
+        function formValidation(){
+           var firstNameObj = document.getElementsByClassName("exampleInputFirstName");
+           var lastNameObj = document.getElementsByClassName("exampleInputLastName");
+           var inputEmailObj = document.getElementsByClassName("exampleInputEmail");
+           var inputPasswordOneObj = document.getElementsByClassName("exampleInputPassword1");
+           var inputPasswordTwoObj = document.getElementsByClassName("exampleInputPassword2");
+           var firstNameErrorMessage = document.getElementById("first_name_error_message");
+           var lastNameErrorMessage = document.getElementById("last_name_error_message");
+           var anotherEmailErrorMessage = document.getElementById("another_email_error_message");
+           var emailErrorMessage = document.getElementById("email_error_message");
+           var password1ErrorMessage = document.getElementById("password1_error_message");
+           var password2ErrorMessage = document.getElementById("password2_error_message");
+           anotherEmailErrorMessage.innerHTML = "";
+           if(emailErrorMessage != null){
+              emailErrorMessage.innerHTML = "";
+           }
+           firstNameErrorMessage.innerHTML = "";
+           lastNameErrorMessage.innerHTML = "";
+           password1ErrorMessage.innerHTML = "";
+           password2ErrorMessage.innerHTML = "";
+           if(firstNameObj[0].value.trim().length == 0){
+             firstNameErrorMessage.innerHTML = "Enter First Name";
+             return false;
+           }
+           if(lastNameObj[0].value.trim().length == 0){
+             lastNameErrorMessage.innerHTML = "Enter Last Name";
+             return false;
+           }
+           if(inputEmailObj[0].value.trim().length == 0){
+             anotherEmailErrorMessage.innerHTML = "Enter Email Address";
+             return false;
+           }
+           if(inputPasswordOneObj[0].value.trim().length == 0){
+             password1ErrorMessage.innerHTML = "Enter Password";
+             return false;
+           }else if(inputPasswordOneObj[0].value.trim().length < 6){
+             password1ErrorMessage.innerHTML = "Password must contains at least 6 character or greater";
+             return false;
+           }
+           if(inputPasswordTwoObj[0].value.trim().length == 0){
+              password2ErrorMessage.innerHTML = "Enter Confirm Password";
+              return false;
+           }else if(inputPasswordTwoObj[0].value.trim() != inputPasswordOneObj[0].value.trim()){
+             password2ErrorMessage.innerHTML = "Confirm Password not match";
+             return false;
+           }
+
+        }
+
+
+    </script>
+
+
   </body>
 </html>

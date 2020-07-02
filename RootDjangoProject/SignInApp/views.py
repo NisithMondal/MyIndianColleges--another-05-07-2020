@@ -9,7 +9,7 @@ def signIn(request):
         firstName = request.POST['first_name']
         lastName = request.POST['last_name']
         email = request.POST['email']
-        password = request.POST['password']
+        password = request.POST['password1']
         if User.objects.filter(email=email).exists():
             messages.info(request, 'This Email Address Already Exists')
             return render(request, 'SignInApp/sign_in.html', {'isPostRequest': True, 'firstName': firstName, 'lastName': lastName,

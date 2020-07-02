@@ -23,6 +23,11 @@
         margin-top: 30px;
 
       }
+       #div1{
+          width: 35%;
+          margin: auto;
+      }
+
       .submit-button{
         width: 100%;
         text-align: center;
@@ -43,7 +48,7 @@
         position: absolute;
       }
 
-      #error-message{
+      #server_error_message{
         color: #f5c107;
         font-size: 16px;
       }
@@ -55,40 +60,71 @@
 
 
     <h3 style=""><span style="color: white;">User</span> <span style="color: orange">Login</span></h3>
-    <form action="/user/login/" method="post">
+    <form action="/user/login/" method="post" onsubmit="return formValidation()">
      {% csrf_token %}
    {% for message in messages %}
-   <p id="error-message">{{ message }}</p>
+   <p id="server_error_message">{{ message }}</p>
    {% endfor %}
   <div class="form-group">
      {% if isPostRequest %}
-       <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" value={{email}} name="email">
+       <input type="email" class="form-control exampleInputEmail a1" aria-describedby="emailHelp"  name="email" value={{email}}>
      {% else %}
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="email">
+    <input type="email" class="form-control exampleInputEmail a2"  aria-describedby="emailHelp" placeholder="Email"  name="email">
     {% endif %}
     <i class="fas fa-envelope input-field-icon"></i>
+    <p id="email_error_message"  style="color: white; font-size: 16px;"></p>
   </div>
   <div class="form-group">
    {% if isPostRequest %}
-    <input type="password" class="form-control" id="exampleInputPassword2" value={{password}} name="password">
+    <input type="password" class="form-control exampleInputPassword"  name="password" value={{password}}>
    {% else %}
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+    <input type="password" class="form-control exampleInputPassword" placeholder="Password" name="password">
    {% endif %}
     <i class="fas fa-key input-field-icon"></i>
+    <p id="password_error_message"  style="color: white; font-size: 16px;"></p>
   </div>
   <button type="submit" class="btn btn-success submit-button">Login</button>
 </form>
-      <h3><a href="/home/">Go to Home Page</a></h3>
-<div>
-
-
-
-
-</div>
+ <div id="div1">
+   <a href="/home/" class="btn btn-light" style="margin-top: 10px; margin-right: 5px;">Home</a>
+   <a href="/user/sign-in/" class="btn btn-warning" style="margin-top: 10px; margin-left:5px;">Sign In</a>
+ </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+  <script>
+      function formValidation(){
+         var inputEmailField = document.getElementsByClassName("exampleInputEmail");
+         var inputPasswordField= document.getElementsByClassName("exampleInputPassword");
+         if(inputEmailField == null){
+           document.write("inputEmailField="+inputEmailField);
+         }
+
+         var emailErrorMessageObj = document.getElementById("email_error_message");
+         var passwordErrorMessageObj = document.getElementById("password_error_message");
+         var serverErrorMessageObj = document.getElementById("server_error_message");
+         if(serverErrorMessageObj != null){
+           serverErrorMessageObj.innerHTML = "";
+         }
+         emailErrorMessageObj.innerHTML = "";
+         passwordErrorMessageObj.innerHTML = "";
+         if(inputEmailField[0].value.trim().length == 0){
+            emailErrorMessageObj.innerHTML = "Enter Your Email Address";
+            return false;
+         }
+         if(inputPasswordField[0].value.trim().length == 0){
+            passwordErrorMessageObj.innerHTML = "Enter Your Password";
+            return false;
+         }else if(inputPasswordField[0].value.trim().length <3){
+            passwordErrorMessageObj.innerHTML = "Password length must be at least 3 character or Greater";
+            return false;
+         }
+       }
+  </script>
+
+
   </body>
 </html>
