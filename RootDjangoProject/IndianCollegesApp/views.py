@@ -221,7 +221,7 @@ def engneeringCollegesStateWise(request, state_id):
     if len(allEngneeringColleges) > 0:
         bodyTitle = 'Engineering Colleges in ' + selectedState.state_name
     allEngneeringCollegesList = []
-    collegeTypeUrlValue = "/state/"+str(state_id)
+    collegeTypeUrlValue = "/state/" + str(state_id)
     for college in allEngneeringColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -232,7 +232,8 @@ def engneeringCollegesStateWise(request, state_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
                    'allEngneeringCollegesList': allEngneeringCollegesList,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
 def engneeringCollegesCityWise(request, city_id):
@@ -259,7 +260,8 @@ def engneeringCollegesCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
                    'allEngneeringCollegesList': allEngneeringCollegesList,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
 def engneeringCollegesStateCityWise(request, city_id):
@@ -290,8 +292,8 @@ def engneeringCollegesStateCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'allEngneeringCollegesList': allEngneeringCollegesList,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
-
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
 def iitCollegesStateWise(request, state_id):
@@ -391,11 +393,13 @@ def medicalCollegesStateWise(request, state_id):
         bodyTitle = 'Medical Colleges in ' + selectedState.state_name
     allImages = CollegeImages.objects.get(id=6)
     state = "/state"
+    collegeTypeUrlValue = "/state/" + str(state_id)
     return render(request, 'IndianCollegesApp/medical_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state, 'allMedicalColleges': allMedicalColleges,
-                   'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle})
+                   'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
 def medicalCollegesCityWise(request, city_id):
@@ -408,6 +412,7 @@ def medicalCollegesCityWise(request, city_id):
     isStateNotSelected = True
     allMedicalColleges = AllColleges.objects.filter(college_type='medical', city_name=city_id).order_by('-college_rank')
     bodyTitle = 'College data is not Available ot this City '
+    collegeTypeUrlValue = "/city/" + str(city_id)
     if len(allMedicalColleges) > 0:
         bodyTitle = 'Medical Colleges in ' + selectedCity.city_name + ', ' + str(selectedCity.state_id)
     allImages = CollegeImages.objects.get(id=7)
@@ -416,7 +421,8 @@ def medicalCollegesCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
                    'allMedicalColleges': allMedicalColleges, 'allImages': allImages,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle})
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
 def medicalCollegesStateCityWise(request, city_id):
@@ -432,6 +438,7 @@ def medicalCollegesStateCityWise(request, city_id):
     isStateNotSelected = False
     allMedicalColleges = AllColleges.objects.filter(college_type='medical', city_name=city_id).order_by('-college_rank')
     bodyTitle = 'College data is not Available of this City'
+    collegeTypeUrlValue = "/state/city/" + str(city_id)
     if len(allMedicalColleges) > 0:
         bodyTitle = 'Medical Colleges in ' + selectedCity.city_name + ', ' + selectedState.state_name
     allImages = CollegeImages.objects.get(id=7)
@@ -441,7 +448,8 @@ def medicalCollegesStateCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'allMedicalColleges': allMedicalColleges, 'allImages': allImages,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle})
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
 def diplomaCollegesStateWise(request, state_id):
@@ -459,11 +467,13 @@ def diplomaCollegesStateWise(request, state_id):
         bodyTitle = 'Diploma Colleges in ' + selectedState.state_name
     allImages = CollegeImages.objects.get(id=3)
     state = "/state"
+    collegeTypeUrlValue = "/state/" + str(state_id)
     return render(request, 'IndianCollegesApp/diploma_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state, 'allDiplomaColleges': allDiplomaColleges,
-                   'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle})
+                   'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
 def diplomaCollegesCityWise(request, city_id):
@@ -476,6 +486,7 @@ def diplomaCollegesCityWise(request, city_id):
     isStateNotSelected = True
     allDiplomaColleges = AllColleges.objects.filter(college_type='diploma', city_name=city_id).order_by('-college_rank')
     bodyTitle = 'College data is not Available ot this City '
+    collegeTypeUrlValue = "/city/" + str(city_id)
     if len(allDiplomaColleges) > 0:
         bodyTitle = 'Diploma Colleges in ' + selectedCity.city_name + ', ' + str(selectedCity.state_id)
     allImages = CollegeImages.objects.get(id=3)
@@ -484,7 +495,8 @@ def diplomaCollegesCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
                    'allDiplomaColleges': allDiplomaColleges, 'allImages': allImages,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle})
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
 def diplomaCollegesStateCityWise(request, city_id):
@@ -500,6 +512,7 @@ def diplomaCollegesStateCityWise(request, city_id):
     isStateNotSelected = False
     allDiplomaColleges = AllColleges.objects.filter(college_type='diploma', city_name=city_id).order_by('-college_rank')
     bodyTitle = 'College data is not Available of this City'
+    collegeTypeUrlValue = "/state/city/" + str(city_id)
     if len(allDiplomaColleges) > 0:
         bodyTitle = 'Diploma Colleges in ' + selectedCity.city_name + ', ' + selectedState.state_name
     allImages = CollegeImages.objects.get(id=3)
@@ -509,7 +522,8 @@ def diplomaCollegesStateCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'allDiplomaColleges': allDiplomaColleges, 'allImages': allImages,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle})
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
 def topEngneeringCollegesStateWise(request, state_id):
@@ -899,36 +913,66 @@ def topBestIITColleges(request):
     })
 
 
-def engineeringCollegesFilterByCollegeType(request, college_type):
+def engineeringCollegesFilterByCollegeType(request, college_status):
+    return filterByCollegeType(request, college_status, 'engneering', 'engneering_colleges.html',
+                               'allEngneeringCollegesList')
+
+
+def medicalCollegesFilterByCollegeType(request, college_status):
+    return filterByCollegeType(request, college_status, 'medical', 'medical_colleges.html',
+                               'allMedicalColleges')
+
+
+def diplomaCollegesFilterByCollegeType(request, college_status):
+    return filterByCollegeType(request, college_status, 'diploma', 'diploma_colleges.html',
+                               'allDiplomaColleges')
+
+
+def filterByCollegeType(request, college_status, college_type, template_name, dictionary_key_name):
     allStatesListForDropdown = list(AllStates.objects.all())
     allCitiesList = list(AllCities.objects.all())
     firstState = allStatesListForDropdown.pop(0)
     otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
                         allStatesListForDropdown.pop(0)]
     isStateNotSelected = True
-    allEngneeringColleges = AllColleges.objects.filter(college_type='engneering', college_status=college_type).order_by('-college_rank')
-    bodyTitle = 'College data not Available'
-    if len(allEngneeringColleges) > 0:
-        bodyTitle = 'All ' + str.capitalize(college_type) + ' Engineering Colleges in India'
-    allEngneeringCollegesList = []
+    allColleges = AllColleges.objects.filter(college_type=college_type,
+                                             college_status=college_status).order_by('-college_rank')
+    bodyTitle = 'Colleges not Found'
+    if len(allColleges) > 0:
+        bodyTitle = 'All ' + str.capitalize(college_status) + ' ' + str.capitalize(college_type) + ' Colleges in India'
+    allCollegesList = []
     # for type government selected link value = 1
     selectedLink = 1
-    if college_type == 'private':
+    if college_status == 'private':
         selectedLink = 2
-    for college in allEngneeringColleges:
+    for college in allColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
-        allEngneeringCollegesList.append(college)
-    return render(request, 'IndianCollegesApp/engneering_colleges.html',
+        allCollegesList.append(college)
+    return render(request, 'IndianCollegesApp/' + template_name,
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
-                   'allEngneeringCollegesList': allEngneeringCollegesList,
+                   dictionary_key_name: allCollegesList,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'selectedLink': selectedLink})
 
 
+def engineeringCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
+    return StateWiseFilterByCollegeType(request, state_id, college_status, 'engneering', 'engneering_colleges.html',
+                                        'allEngneeringCollegesList')
 
-def engineeringCollegesStateWiseFilterByCollegeType(request, state_id, college_type):
+
+def medicalCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
+    return StateWiseFilterByCollegeType(request, state_id, college_status, 'medical', 'medical_colleges.html',
+                                        'allMedicalColleges')
+
+
+def diplomaCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
+    return StateWiseFilterByCollegeType(request, state_id, college_status, 'diploma', 'diploma_colleges.html',
+                                        'allDiplomaColleges')
+
+
+def StateWiseFilterByCollegeType(request, state_id, college_status, college_type, templet_name, dictionary_key_name):
     allStatesListForDropdown = list(AllStates.objects.exclude(id=state_id))
     selectedState = AllStates.objects.filter(id=state_id)
     allCitiesList = list(AllCities.objects.filter(state_id=state_id))
@@ -936,32 +980,48 @@ def engineeringCollegesStateWiseFilterByCollegeType(request, state_id, college_t
     otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
                         allStatesListForDropdown.pop(0)]
     isStateNotSelected = False
-    allEngneeringColleges = AllColleges.objects.filter(college_type='engneering', college_status=college_type, state_name=state_id).order_by(
-        '-college_rank')
-    bodyTitle = str.capitalize(college_type)+' College is not Found of this State '
-    if len(allEngneeringColleges) > 0:
-        bodyTitle = str.capitalize(college_type)+' Engineering Colleges in ' + selectedState.state_name
-    allEngneeringCollegesList = []
+    allColleges = AllColleges.objects.filter(college_type=college_type, college_status=college_status,
+                                             state_name=state_id).order_by('-college_rank')
+    bodyTitle = str.capitalize(college_status) + ' College is not Found of this State '
+    if len(allColleges) > 0:
+        bodyTitle = str.capitalize(college_status) + ' ' + str.capitalize(
+            college_type) + ' Colleges in ' + selectedState.state_name
+    allCollegesList = []
     # for type government selected link value = 1
     selectedLink = 1
-    if college_type == 'private':
+    if college_status == 'private':
         selectedLink = 2
     collegeTypeUrlValue = "/state/" + str(state_id)
-    for college in allEngneeringColleges:
+    for college in allColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
-        allEngneeringCollegesList.append(college)
+        allCollegesList.append(college)
     state = "/state"
-    return render(request, 'IndianCollegesApp/engneering_colleges.html',
+    return render(request, 'IndianCollegesApp/' + templet_name,
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'allEngneeringCollegesList': allEngneeringCollegesList,
+                   dictionary_key_name: allCollegesList,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'selectedLink': selectedLink})
 
 
-def engineeringCollegesCityWiseFilterByCollegeType(request, city_id, college_type):
+def engineeringCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
+    return cityWiseFilterByCollegeType(request, city_id, college_status, 'engneering', 'engneering_colleges.html',
+                                       'allEngneeringCollegesList')
+
+
+def medicalCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
+    return cityWiseFilterByCollegeType(request, city_id, college_status, 'medical', 'medical_colleges.html',
+                                       'allMedicalColleges')
+
+
+def diplomaCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
+    return cityWiseFilterByCollegeType(request, city_id, college_status, 'diploma', 'diploma_colleges.html',
+                                       'allDiplomaColleges')
+
+
+def cityWiseFilterByCollegeType(request, city_id, college_status, college_type, templet_name, dictionary_key_name):
     allStatesListForDropdown = list(AllStates.objects.all())
     allCitiesList = list(AllCities.objects.all())
     selectedCity = AllCities.objects.get(id=city_id)
@@ -969,30 +1029,48 @@ def engineeringCollegesCityWiseFilterByCollegeType(request, city_id, college_typ
     otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
                         allStatesListForDropdown.pop(0)]
     isStateNotSelected = True
-    allEngneeringColleges = AllColleges.objects.filter(college_type='engneering', college_status=college_type, city_name=city_id).order_by(
-        '-college_rank')
-    bodyTitle = str.capitalize(college_type)+' College is not Found of this City '
-    if len(allEngneeringColleges) > 0:
-        bodyTitle = str.capitalize(college_type)+' Engineering Colleges in ' + selectedCity.city_name + ', ' + str(selectedCity.state_id)
-    allEngneeringCollegesList = []
+    allColleges = AllColleges.objects.filter(college_type=college_type, college_status=college_status,
+                                             city_name=city_id).order_by('-college_rank')
+    bodyTitle = str.capitalize(college_status) + ' College is not Found of this City '
+    if len(allColleges) > 0:
+        bodyTitle = str.capitalize(college_status) + ' ' + str.capitalize(
+            college_type) + ' Colleges in ' + selectedCity.city_name + ', ' + str(
+            selectedCity.state_id)
+    allCollegesList = []
     # for type government selected link value = 1
     selectedLink = 1
-    if college_type == 'private':
+    if college_status == 'private':
         selectedLink = 2
     collegeTypeUrlValue = "/city/" + str(city_id)
-    for college in allEngneeringColleges:
+    for college in allColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
-        allEngneeringCollegesList.append(college)
-    return render(request, 'IndianCollegesApp/engneering_colleges.html',
+        allCollegesList.append(college)
+    return render(request, 'IndianCollegesApp/' + templet_name,
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'allEngneeringCollegesList': allEngneeringCollegesList,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'selectedLink': selectedLink,'collegeTypeUrlValue': collegeTypeUrlValue})
+                   dictionary_key_name: allCollegesList,
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'selectedLink': selectedLink,
+                   'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
-def engineeringCollegesStateCityWiseFilterByCollegeType(request, city_id, college_type):
+def engineeringCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
+    return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'engneering', 'engneering_colleges.html',
+                                            'allEngneeringCollegesList')
+
+
+def medicalCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
+    return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'medical', 'medical_colleges.html',
+                                            'allMedicalColleges')
+
+
+def diplomaCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
+    return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'diploma', 'diploma_colleges.html',
+                                            'allDiplomaColleges')
+
+
+def stateCityWiseFilterByCollegeType(request, city_id, college_status, college_type, template_name, dictionary_key_name):
     obj = AllCities.objects.get(id=city_id)
     state_id = obj.state_id_id
     allStatesListForDropdown = list(AllStates.objects.exclude(id=state_id))
@@ -1003,27 +1081,28 @@ def engineeringCollegesStateCityWiseFilterByCollegeType(request, city_id, colleg
     otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
                         allStatesListForDropdown.pop(0)]
     isStateNotSelected = False
-    allEngneeringColleges = AllColleges.objects.filter(college_type='engneering', college_status=college_type, city_name=city_id).order_by(
-        '-college_rank')
-    bodyTitle = str.capitalize(college_type)+' College is not Found of this City'
-    if len(allEngneeringColleges) > 0:
-        bodyTitle = str.capitalize(college_type)+' Engineering Colleges in ' + selectedCity.city_name + ', ' + selectedState.state_name
-    allEngneeringCollegesList = []
+    allColleges = AllColleges.objects.filter(college_type=college_type, college_status=college_status,
+                                             city_name=city_id).order_by('-college_rank')
+    bodyTitle = str.capitalize(college_status) + ' College is not Found of this City'
+    if len(allColleges) > 0:
+        bodyTitle = str.capitalize(college_status) + ' ' + str.capitalize(
+            college_type) + ' Colleges in ' + selectedCity.city_name + ', ' + selectedState.state_name
+    allCollegesList = []
     # for type government selected link value = 1
     selectedLink = 1
-    if college_type == 'private':
+    if college_status == 'private':
         selectedLink = 2
     collegeTypeUrlValue = "/state/city/" + str(city_id)
-    for college in allEngneeringColleges:
+    for college in allColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
-        allEngneeringCollegesList.append(college)
+        allCollegesList.append(college)
     state = "/state"
-    return render(request, 'IndianCollegesApp/engneering_colleges.html',
+    return render(request, 'IndianCollegesApp/' + template_name,
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'allEngneeringCollegesList': allEngneeringCollegesList,
+                   dictionary_key_name: allCollegesList,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'selectedLink': selectedLink})
 
