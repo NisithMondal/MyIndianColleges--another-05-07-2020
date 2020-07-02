@@ -52,7 +52,13 @@ urlpatterns = [
     path('top-government-medical-colleges/', views.topGovernmentMedicalColleges),
     path('top-government-diploma-colleges/', views.topGovernmentDiplomaColleges),
     path('top-private-diploma-colleges/', views.topPrivateDiplomaColleges),
-    path('top-best-iit-colleges/', views.topBestIITColleges)
+    path('top-best-iit-colleges/', views.topBestIITColleges),
+
+    path('engineering-colleges/college-type/<str:college_type>', views.engineeringCollegesFilterByCollegeType),
+    path('engineering-colleges/state/<int:state_id>/college-type/<str:college_type>', views.engineeringCollegesStateWiseFilterByCollegeType),
+    path('engineering-colleges/city/<int:city_id>/college-type/<str:college_type>', views.engineeringCollegesCityWiseFilterByCollegeType),
+    path('engineering-colleges/state/city/<int:city_id>/college-type/<str:college_type>', views.engineeringCollegesStateCityWiseFilterByCollegeType),
+
 
 
 ]

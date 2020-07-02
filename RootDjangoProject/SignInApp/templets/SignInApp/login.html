@@ -20,11 +20,14 @@
       form{
         width: 27%;
         margin: auto;
-        margin-top: 30px;
+        margin-top: 160px;
+        border: 3px solid #aebdb2;
+        padding: 20px;
+        border-radius: 10px;
 
       }
        #div1{
-          width: 35%;
+          width: 27%;
           margin: auto;
       }
 
@@ -38,7 +41,7 @@
       h3{
         width: 100%;
         text-align: center;
-        margin-top: 200px;
+        margin-bottom: 30px;
         color: #ffffff;
       }
       .input-field-icon{
@@ -57,10 +60,8 @@
   </head>
   <body>
 
-
-
-    <h3 style=""><span style="color: white;">User</span> <span style="color: orange">Login</span></h3>
     <form action="/user/login/" method="post" onsubmit="return formValidation()">
+    <h3 style=""><span style="color: white;">User</span> <span style="color: orange">Login</span></h3>
      {% csrf_token %}
    {% for message in messages %}
    <p id="server_error_message">{{ message }}</p>
@@ -86,8 +87,8 @@
   <button type="submit" class="btn btn-success submit-button">Login</button>
 </form>
  <div id="div1">
-   <a href="/home/" class="btn btn-light" style="margin-top: 10px; margin-right: 5px;">Home</a>
-   <a href="/user/sign-in/" class="btn btn-warning" style="margin-top: 10px; margin-left:5px;">Sign In</a>
+   <a href="/home/" class="btn btn-light" style="margin-top: 20px; margin-right: 5px;">Home</a>
+   <a href="/user/sign-in/" class="btn btn-warning" style="margin-top: 20px; margin-left:5px;">Sign In</a>
  </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
