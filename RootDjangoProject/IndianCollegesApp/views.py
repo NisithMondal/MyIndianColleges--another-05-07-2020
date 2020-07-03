@@ -401,12 +401,13 @@ def medicalCollegesStateWise(request, state_id):
     allImages = CollegeImages.objects.get(id=6)
     state = "/state"
     collegeTypeUrlValue = "/state/" + str(state_id)
+    collegeFeesUrlValue = "/state/" + str(state_id)
     return render(request, 'IndianCollegesApp/medical_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state, 'allMedicalColleges': allMedicalColleges,
                    'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def medicalCollegesCityWise(request, city_id):
@@ -420,6 +421,7 @@ def medicalCollegesCityWise(request, city_id):
     allMedicalColleges = AllColleges.objects.filter(college_type='medical', city_name=city_id).order_by('-college_rank')
     bodyTitle = 'College data is not Available ot this City '
     collegeTypeUrlValue = "/city/" + str(city_id)
+    collegeFeesUrlValue = "/city/" + str(city_id)
     if len(allMedicalColleges) > 0:
         bodyTitle = 'Medical Colleges in ' + selectedCity.city_name + ', ' + str(selectedCity.state_id)
     allImages = CollegeImages.objects.get(id=7)
@@ -429,7 +431,7 @@ def medicalCollegesCityWise(request, city_id):
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
                    'allMedicalColleges': allMedicalColleges, 'allImages': allImages,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def medicalCollegesStateCityWise(request, city_id):
@@ -446,6 +448,7 @@ def medicalCollegesStateCityWise(request, city_id):
     allMedicalColleges = AllColleges.objects.filter(college_type='medical', city_name=city_id).order_by('-college_rank')
     bodyTitle = 'College data is not Available of this City'
     collegeTypeUrlValue = "/state/city/" + str(city_id)
+    collegeFeesUrlValue = "/state/city/" + str(city_id)
     if len(allMedicalColleges) > 0:
         bodyTitle = 'Medical Colleges in ' + selectedCity.city_name + ', ' + selectedState.state_name
     allImages = CollegeImages.objects.get(id=7)
@@ -456,7 +459,7 @@ def medicalCollegesStateCityWise(request, city_id):
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'allMedicalColleges': allMedicalColleges, 'allImages': allImages,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def diplomaCollegesStateWise(request, state_id):
@@ -475,12 +478,13 @@ def diplomaCollegesStateWise(request, state_id):
     allImages = CollegeImages.objects.get(id=3)
     state = "/state"
     collegeTypeUrlValue = "/state/" + str(state_id)
+    collegeFeesUrlValue = "/state/" + str(state_id)
     return render(request, 'IndianCollegesApp/diploma_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state, 'allDiplomaColleges': allDiplomaColleges,
                    'allImages': allImages, 'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def diplomaCollegesCityWise(request, city_id):
@@ -494,6 +498,7 @@ def diplomaCollegesCityWise(request, city_id):
     allDiplomaColleges = AllColleges.objects.filter(college_type='diploma', city_name=city_id).order_by('-college_rank')
     bodyTitle = 'College data is not Available ot this City '
     collegeTypeUrlValue = "/city/" + str(city_id)
+    collegeFeesUrlValue = "/city/" + str(city_id)
     if len(allDiplomaColleges) > 0:
         bodyTitle = 'Diploma Colleges in ' + selectedCity.city_name + ', ' + str(selectedCity.state_id)
     allImages = CollegeImages.objects.get(id=3)
@@ -503,7 +508,7 @@ def diplomaCollegesCityWise(request, city_id):
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
                    'allDiplomaColleges': allDiplomaColleges, 'allImages': allImages,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def diplomaCollegesStateCityWise(request, city_id):
@@ -520,6 +525,7 @@ def diplomaCollegesStateCityWise(request, city_id):
     allDiplomaColleges = AllColleges.objects.filter(college_type='diploma', city_name=city_id).order_by('-college_rank')
     bodyTitle = 'College data is not Available of this City'
     collegeTypeUrlValue = "/state/city/" + str(city_id)
+    collegeFeesUrlValue = "/state/city/" + str(city_id)
     if len(allDiplomaColleges) > 0:
         bodyTitle = 'Diploma Colleges in ' + selectedCity.city_name + ', ' + selectedState.state_name
     allImages = CollegeImages.objects.get(id=3)
@@ -530,7 +536,7 @@ def diplomaCollegesStateCityWise(request, city_id):
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'allDiplomaColleges': allDiplomaColleges, 'allImages': allImages,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topEngneeringCollegesStateWise(request, state_id):
@@ -548,6 +554,7 @@ def topEngneeringCollegesStateWise(request, state_id):
         bodyTitle = 'Top Engineering Colleges in ' + selectedState.state_name
     topEngneeringCollegesList = []
     collegeTypeUrlValue = "/state/" + str(state_id)
+    collegeFeesUrlValue = "/state/" + str(state_id)
     for college in topEngneeringColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -559,7 +566,7 @@ def topEngneeringCollegesStateWise(request, state_id):
                    'isStateNotSelected': isStateNotSelected, 'state': state,
                    'topEngneeringCollegesList': topEngneeringCollegesList,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topEngneeringCollegesCityWise(request, city_id):
@@ -577,6 +584,7 @@ def topEngneeringCollegesCityWise(request, city_id):
         bodyTitle = 'Top Engineering Colleges in ' + selectedCity.city_name + ', ' + str(selectedCity.state_id)
     topEngneeringCollegesList = []
     collegeTypeUrlValue = "/city/" + str(city_id)
+    collegeFeesUrlValue = "/city/" + str(city_id)
     for college in topEngneeringColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -587,7 +595,7 @@ def topEngneeringCollegesCityWise(request, city_id):
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
                    'topEngneeringCollegesList': topEngneeringCollegesList,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topEngneeringCollegesStateCityWise(request, city_id):
@@ -608,6 +616,7 @@ def topEngneeringCollegesStateCityWise(request, city_id):
         bodyTitle = 'Top Engineering Colleges in ' + selectedCity.city_name + ', ' + selectedState.state_name
     topEngneeringCollegesList = []
     collegeTypeUrlValue = "/state/city/" + str(city_id)
+    collegeFeesUrlValue = "/state/city/" + str(city_id)
     for college in topEngneeringColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -619,7 +628,7 @@ def topEngneeringCollegesStateCityWise(request, city_id):
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'topEngneeringCollegesList': topEngneeringCollegesList,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topMedicalCollegesStateWise(request, state_id):
@@ -637,6 +646,7 @@ def topMedicalCollegesStateWise(request, state_id):
         bodyTitle = 'Top Medical Colleges in ' + selectedState.state_name
     topMedicalCollegesList = []
     collegeTypeUrlValue = "/state/" + str(state_id)
+    collegeFeesUrlValue = "/state/" + str(state_id)
     for college in topMedicalColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -647,7 +657,7 @@ def topMedicalCollegesStateWise(request, state_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
                    'topMedicalCollegesList': topMedicalCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topMedicalCollegesCityWise(request, city_id):
@@ -665,6 +675,7 @@ def topMedicalCollegesCityWise(request, city_id):
         bodyTitle = 'Top Medical Colleges in ' + selectedCity.city_name + ', ' + str(selectedCity.state_id)
     topMedicalCollegesList = []
     collegeTypeUrlValue = "/city/" + str(city_id)
+    collegeFeesUrlValue = "/city/" + str(city_id)
     for college in topMedicalColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -674,7 +685,7 @@ def topMedicalCollegesCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
                    'topMedicalCollegesList': topMedicalCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topMedicalCollegesStateCityWise(request, city_id):
@@ -695,6 +706,7 @@ def topMedicalCollegesStateCityWise(request, city_id):
         bodyTitle = 'Top Medical Colleges in ' + selectedCity.city_name + ', ' + selectedState.state_name
     topMedicalCollegesList = []
     collegeTypeUrlValue = "/state/city/" + str(city_id)
+    collegeFeesUrlValue = "/state/city/" + str(city_id)
     for college in topMedicalColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -705,7 +717,7 @@ def topMedicalCollegesStateCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'topMedicalCollegesList': topMedicalCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topDiplomaCollegesStateWise(request, state_id):
@@ -723,6 +735,7 @@ def topDiplomaCollegesStateWise(request, state_id):
         bodyTitle = 'Top Diploma Colleges in ' + selectedState.state_name
     topDiplomaCollegesList = []
     collegeTypeUrlValue = "/state/" + str(state_id)
+    collegeFeesUrlValue = "/state/" + str(state_id)
     for college in topDiplomaColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -733,7 +746,7 @@ def topDiplomaCollegesStateWise(request, state_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
                    'topDiplomaCollegesList': topDiplomaCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topDiplomaCollegesCityWise(request, city_id):
@@ -751,6 +764,7 @@ def topDiplomaCollegesCityWise(request, city_id):
         bodyTitle = 'Top Diploma Colleges in ' + selectedCity.city_name + ', ' + str(selectedCity.state_id)
     topDiplomaCollegesList = []
     collegeTypeUrlValue = "/city/" + str(city_id)
+    collegeFeesUrlValue = "/city/" + str(city_id)
     for college in topDiplomaColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -760,7 +774,7 @@ def topDiplomaCollegesCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
                    'topDiplomaCollegesList': topDiplomaCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topDiplomaCollegesStateCityWise(request, city_id):
@@ -781,6 +795,7 @@ def topDiplomaCollegesStateCityWise(request, city_id):
         bodyTitle = 'Top Diploma Colleges in ' + selectedCity.city_name + ', ' + selectedState.state_name
     topDiplomaCollegesList = []
     collegeTypeUrlValue = "/state/city/" + str(city_id)
+    collegeFeesUrlValue = "/state/city/" + str(city_id)
     for college in topDiplomaColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -791,7 +806,7 @@ def topDiplomaCollegesStateCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'topDiplomaCollegesList': topDiplomaCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topIITCollegesStateWise(request, state_id):
@@ -809,6 +824,7 @@ def topIITCollegesStateWise(request, state_id):
         bodyTitle = 'Top IIT Colleges in ' + selectedState.state_name
     topIITCollegesList = []
     collegeTypeUrlValue = "/state/" + str(state_id)
+    collegeFeesUrlValue = "/state/" + str(state_id)
     for college in topIITColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -819,7 +835,7 @@ def topIITCollegesStateWise(request, state_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
                    'topIITCollegesList': topIITCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topIITCollegesCityWise(request, city_id):
@@ -837,6 +853,7 @@ def topIITCollegesCityWise(request, city_id):
         bodyTitle = 'Top IIT Colleges in ' + selectedCity.city_name + ', ' + str(selectedCity.state_id)
     topIITCollegesList = []
     collegeTypeUrlValue = "/city/" + str(city_id)
+    collegeFeesUrlValue = "/city/" + str(city_id)
     for college in topIITColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -846,7 +863,7 @@ def topIITCollegesCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
                    'topIITCollegesList': topIITCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topIITCollegesStateCityWise(request, city_id):
@@ -867,6 +884,7 @@ def topIITCollegesStateCityWise(request, city_id):
         bodyTitle = 'Top IIT Colleges in ' + selectedCity.city_name + ', ' + selectedState.state_name
     topIITCollegesList = []
     collegeTypeUrlValue = "/state/city/" + str(city_id)
+    collegeFeesUrlValue = "/state/city/" + str(city_id)
     for college in topIITColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -877,7 +895,7 @@ def topIITCollegesStateCityWise(request, city_id):
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'topIITCollegesList': topIITCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def topGovernmentEngineeringColleges(request):
@@ -1256,6 +1274,31 @@ def engineeringCollegesFilterBySemesterFees(request, lower_value, higher_value, 
                                 'engneering_colleges.html', 'allEngneeringCollegesList', False)
 
 
+def medicalCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
+    return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'medical',
+                                'medical_colleges.html', 'allMedicalColleges', False)
+
+
+def diplomaCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
+    return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'diploma',
+                                'diploma_colleges.html', 'allDiplomaColleges', False)
+
+def topDiplomaCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
+    return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'diploma',
+                                'top_diploma_colleges.html', 'topDiplomaCollegesList', True)
+
+
+def topMedicalCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
+    return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'medical',
+                                'top_medical_colleges.html', 'topMedicalCollegesList', True)
+
+
+def topEngineeringCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
+    return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'engneering',
+                                'top_engneering_colleges.html', 'topEngneeringCollegesList', True)
+
+
+
 def filterBySemesterFees(request, lower_value, higher_value, selected_link_number, college_type, template_name,
                          dictionary_key_name, isRequestForTopColleges):
     allStatesListForDropdown = list(AllStates.objects.all())
@@ -1298,7 +1341,7 @@ def filterBySemesterFees(request, lower_value, higher_value, selected_link_numbe
                                                      college_fees_per_semester__lte=higher_value).order_by(
                 '-college_rank')
 
-    bodyTitle = 'College not Found in this Fees'
+    bodyTitle = 'College not Found in this Fees Range'
     if len(allColleges) > 0:
         bodyTitle = str.capitalize(
             college_type) + ' Colleges Semester Fees in between ' + lower_value + ' to ' + higher_value
@@ -1321,6 +1364,43 @@ def engineeringCollegesStateWiseFilterBySemesterFees(request, state_id, lower_va
     return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
                                          'engneering',
                                          'engneering_colleges.html', 'allEngneeringCollegesList', False)
+
+
+def medicalCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
+                                                     selected_link_number):
+    return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
+                                         'medical',
+                                         'medical_colleges.html', 'allMedicalColleges', False)
+
+
+def diplomaCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
+                                                     selected_link_number):
+    return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
+                                         'diploma',
+                                         'diploma_colleges.html', 'allDiplomaColleges', False)
+
+def topDiplomaCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
+                                                     selected_link_number):
+    return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
+                                         'diploma',
+                                         'top_diploma_colleges.html', 'topDiplomaCollegesList', True)
+
+
+def topMedicalCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
+                                                     selected_link_number):
+    return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
+                                         'medical',
+                                         'top_medical_colleges.html', 'topMedicalCollegesList', True)
+
+
+
+def topEngineeringCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
+                                                     selected_link_number):
+    return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
+                                         'engneering',
+                                         'top_engneering_colleges.html', 'topEngneeringCollegesList', True)
+
+
 
 
 def stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number, college_type,
@@ -1393,6 +1473,32 @@ def stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, 
 def engineeringCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
     return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'engneering',
                                         'engneering_colleges.html', 'allEngneeringCollegesList', False)
+
+def medicalCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
+    return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'medical',
+                                        'medical_colleges.html', 'allMedicalColleges', False)
+
+
+def diplomaCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
+    return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'diploma',
+                                        'diploma_colleges.html', 'allDiplomaColleges', False)
+
+
+def topDiplomaCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
+    return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'diploma',
+                                        'top_diploma_colleges.html', 'topDiplomaCollegesList', True)
+
+
+def topMedicalCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
+    return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'medical',
+                                        'top_medical_colleges.html', 'topMedicalCollegesList', True)
+
+
+def topEngineeringCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
+    return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'engneering',
+                                        'top_engneering_colleges.html', 'topEngneeringCollegesList', True)
+
+
 
 
 def cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, college_type,
@@ -1468,6 +1574,39 @@ def engineeringCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower
     return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
                                              'engneering',
                                              'engneering_colleges.html', 'allEngneeringCollegesList', False)
+
+def medicalCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
+                                                         selected_link_number):
+    return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
+                                             'medical',
+                                             'medical_colleges.html', 'allMedicalColleges', False)
+
+def diplomaCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
+                                                         selected_link_number):
+    return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
+                                             'diploma',
+                                             'diploma_colleges.html', 'allDiplomaColleges', False)
+
+
+def topDiplomaCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
+                                                         selected_link_number):
+    return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
+                                             'diploma',
+                                             'top_diploma_colleges.html', 'topDiplomaCollegesList', True)
+
+
+def topMedicalCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
+                                                         selected_link_number):
+    return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
+                                             'medical',
+                                             'top_medical_colleges.html', 'topMedicalCollegesList', True)
+
+
+def topEngineeringCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
+                                                         selected_link_number):
+    return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
+                                             'engneering',
+                                             'top_engneering_colleges.html', 'topEngneeringCollegesList', True)
 
 
 def stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, college_type,

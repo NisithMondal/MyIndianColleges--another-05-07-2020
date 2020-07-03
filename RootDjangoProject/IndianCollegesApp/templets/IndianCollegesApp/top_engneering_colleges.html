@@ -16,6 +16,10 @@
     background-color: #0BB244;
     color: #ffffff;
   }
+   #fees-selected-link{{ feesSelectedLink }}{
+    background-color: #0BB244;
+    color: #ffffff;
+  }
 {% endblock %}
 
 
@@ -32,6 +36,16 @@
 {% block college_type %}
   <a href="/top-engineering-colleges{{collegeTypeUrlValue}}/college-type/government" id="link1" class="cityLink">1. Government</a>
   <a href="/top-engineering-colleges{{collegeTypeUrlValue}}/college-type/private" id="link2" class="cityLink">2. Private</a>
+{% endblock %}
+
+
+{% block semester_fees %}
+    <a href="/top-engineering-colleges{{collegeFeesUrlValue}}/semester-fees/100000/greater/1" id="fees-selected-link1" class="cityLink">100,000(Rs) or Greater</a>
+    <a href="/top-engineering-colleges{{collegeFeesUrlValue}}/semester-fees/80000/100000/2" id="fees-selected-link2" class="cityLink"> 80,000(Rs) to 100,000(Rs)</a>
+    <a href="/top-engineering-colleges{{collegeFeesUrlValue}}/semester-fees/60000/79999/3" id="fees-selected-link3" class="cityLink">60,000(Rs) to 79,999(Rs)</a>
+    <a href="/top-engineering-colleges{{collegeFeesUrlValue}}/semester-fees/40000/59999/4" id="fees-selected-link4" class="cityLink">40,000(Rs) to 59,999(Rs)</a>
+    <a href="/top-engineering-colleges{{collegeFeesUrlValue}}/semester-fees/20000/39999/5" id="fees-selected-link5" class="cityLink">20,000(Rs) to 39,999(Rs)</a>
+    <a href="/top-engineering-colleges{{collegeFeesUrlValue}}/semester-fees/20000/less/6" id="fees-selected-link6" class="cityLink">20,000(Rs) or Less</a>
 {% endblock %}
 
 

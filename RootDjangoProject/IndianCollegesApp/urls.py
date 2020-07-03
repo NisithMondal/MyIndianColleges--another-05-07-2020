@@ -125,6 +125,51 @@ urlpatterns = [
     path('engineering-colleges/state/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
          views.engineeringCollegesStateCityWiseFilterBySemesterFees),
 
+    path('medical-colleges/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+         views.medicalCollegesFilterBySemesterFees),
+    path('medical-colleges/state/<int:state_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.medicalCollegesStateWiseFilterBySemesterFees),
+    path('medical-colleges/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.medicalCollegesCityWiseFilterBySemesterFees),
+    path('medical-colleges/state/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.medicalCollegesStateCityWiseFilterBySemesterFees),
+
+    path('diploma-colleges/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+         views.diplomaCollegesFilterBySemesterFees),
+    path('diploma-colleges/state/<int:state_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.diplomaCollegesStateWiseFilterBySemesterFees),
+    path('diploma-colleges/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.diplomaCollegesCityWiseFilterBySemesterFees),
+    path('diploma-colleges/state/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.diplomaCollegesStateCityWiseFilterBySemesterFees),
+
+    path('top-diploma-colleges/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+         views.topDiplomaCollegesFilterBySemesterFees),
+    path('top-diploma-colleges/state/<int:state_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topDiplomaCollegesStateWiseFilterBySemesterFees),
+    path('top-diploma-colleges/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topDiplomaCollegesCityWiseFilterBySemesterFees),
+    path('top-diploma-colleges/state/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topDiplomaCollegesStateCityWiseFilterBySemesterFees),
+
+    path('top-medical-colleges/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+         views.topMedicalCollegesFilterBySemesterFees),
+    path('top-medical-colleges/state/<int:state_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topMedicalCollegesStateWiseFilterBySemesterFees),
+    path('top-medical-colleges/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topMedicalCollegesCityWiseFilterBySemesterFees),
+    path('top-medical-colleges/state/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topMedicalCollegesStateCityWiseFilterBySemesterFees),
+
+    path('top-engineering-colleges/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+         views.topEngineeringCollegesFilterBySemesterFees),
+    path('top-engineering-colleges/state/<int:state_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topEngineeringCollegesStateWiseFilterBySemesterFees),
+    path('top-engineering-colleges/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topEngineeringCollegesCityWiseFilterBySemesterFees),
+    path('top-engineering-colleges/state/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topEngineeringCollegesStateCityWiseFilterBySemesterFees),
+
 ]
 
 
