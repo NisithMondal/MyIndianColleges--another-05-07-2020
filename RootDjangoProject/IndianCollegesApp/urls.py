@@ -59,6 +59,15 @@ urlpatterns = [
     path('engineering-colleges/city/<int:city_id>/college-type/<str:college_status>', views.engineeringCollegesCityWiseFilterByCollegeType),
     path('engineering-colleges/state/city/<int:city_id>/college-type/<str:college_status>', views.engineeringCollegesStateCityWiseFilterByCollegeType),
 
+    path('iit-colleges/college-type/<str:college_status>', views.iitCollegesFilterByCollegeType),
+    path('iit-colleges/state/<int:state_id>/college-type/<str:college_status>',
+         views.iitCollegesStateWiseFilterByCollegeType),
+    path('iit-colleges/city/<int:city_id>/college-type/<str:college_status>',
+         views.iitCollegesCityWiseFilterByCollegeType),
+    path('iit-colleges/state/city/<int:city_id>/college-type/<str:college_status>',
+         views.iitCollegesStateCityWiseFilterByCollegeType),
+
+
     path('medical-colleges/college-type/<str:college_status>', views.medicalCollegesFilterByCollegeType),
     path('medical-colleges/state/<int:state_id>/college-type/<str:college_status>',
          views.medicalCollegesStateWiseFilterByCollegeType),
@@ -75,6 +84,37 @@ urlpatterns = [
     path('diploma-colleges/state/city/<int:city_id>/college-type/<str:college_status>',
          views.diplomaCollegesStateCityWiseFilterByCollegeType),
 
+    path('top-iit-colleges/college-type/<str:college_status>', views.topIITCollegesFilterByCollegeType),
+    path('top-iit-colleges/state/<int:state_id>/college-type/<str:college_status>',
+         views.topIITCollegesStateWiseFilterByCollegeType),
+    path('top-iit-colleges/city/<int:city_id>/college-type/<str:college_status>',
+         views.topIITCollegesCityWiseFilterByCollegeType),
+    path('top-iit-colleges/state/city/<int:city_id>/college-type/<str:college_status>',
+         views.topIITCollegesStateCityWiseFilterByCollegeType),
+
+    path('top-diploma-colleges/college-type/<str:college_status>', views.topDiplomaCollegesFilterByCollegeType),
+    path('top-diploma-colleges/state/<int:state_id>/college-type/<str:college_status>',
+         views.topDiplomaCollegesStateWiseFilterByCollegeType),
+    path('top-diploma-colleges/city/<int:city_id>/college-type/<str:college_status>',
+         views.topDiplomaCollegesCityWiseFilterByCollegeType),
+    path('top-diploma-colleges/state/city/<int:city_id>/college-type/<str:college_status>',
+         views.topDiplomaCollegesStateCityWiseFilterByCollegeType),
+
+    path('top-medical-colleges/college-type/<str:college_status>', views.topMedicalCollegesFilterByCollegeType),
+    path('top-medical-colleges/state/<int:state_id>/college-type/<str:college_status>',
+         views.topMedicalCollegesStateWiseFilterByCollegeType),
+    path('top-medical-colleges/city/<int:city_id>/college-type/<str:college_status>',
+         views.topMedicalCollegesCityWiseFilterByCollegeType),
+    path('top-medical-colleges/state/city/<int:city_id>/college-type/<str:college_status>',
+         views.topMedicalCollegesStateCityWiseFilterByCollegeType),
+
+    path('top-engineering-colleges/college-type/<str:college_status>', views.topEngineeringCollegesFilterByCollegeType),
+    path('top-engineering-colleges/state/<int:state_id>/college-type/<str:college_status>',
+         views.topEngineeringCollegesStateWiseFilterByCollegeType),
+    path('top-engineering-colleges/city/<int:city_id>/college-type/<str:college_status>',
+         views.topEngineeringCollegesCityWiseFilterByCollegeType),
+    path('top-engineering-colleges/state/city/<int:city_id>/college-type/<str:college_status>',
+         views.topEngineeringCollegesStateCityWiseFilterByCollegeType),
 ]
 
 

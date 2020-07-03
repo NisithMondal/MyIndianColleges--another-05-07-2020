@@ -12,6 +12,10 @@
      background-color: #0BB244;
      color: #ffffff;
   }
+   #link{{ selectedLink }}{
+    background-color: #0BB244;
+    color: #ffffff;
+  }
 {% endblock %}
 
 
@@ -22,6 +26,12 @@
      the url will be 'home/city/city_id' -->
      <a href="/top-engneering-colleges{{ state }}/city/{{city.id}}" id="a{{city.id}}" class="cityLink">{{ city.city_name }}</a>
   {% endfor %}
+{% endblock %}
+
+
+{% block college_type %}
+  <a href="/top-engineering-colleges{{collegeTypeUrlValue}}/college-type/government" id="link1" class="cityLink">1. Government</a>
+  <a href="/top-engineering-colleges{{collegeTypeUrlValue}}/college-type/private" id="link2" class="cityLink">2. Private</a>
 {% endblock %}
 
 

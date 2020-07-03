@@ -12,6 +12,10 @@
      background-color: #0BB244;
      color: #ffffff;
   }
+   #link{{ selectedLink }}{
+    background-color: #0BB244;
+    color: #ffffff;
+  }
 {% endblock %}
 
 
@@ -22,6 +26,11 @@
      the url will be 'home/city/city_id' -->
      <a href="/top-diploma-colleges{{ state }}/city/{{city.id}}" id="a{{city.id}}" class="cityLink">{{ city.city_name }}</a>
   {% endfor %}
+{% endblock %}
+
+{% block college_type %}
+  <a href="/top-diploma-colleges{{collegeTypeUrlValue}}/college-type/government" id="link1" class="cityLink">1. Government</a>
+  <a href="/top-diploma-colleges{{collegeTypeUrlValue}}/college-type/private" id="link2" class="cityLink">2. Private</a>
 {% endblock %}
 
 
@@ -71,6 +80,7 @@
 
         <div class="card-body">
         <ul style="margin-left: -30px;color: #ee00aa;">
+            <li><p class="card-text unorder-list-item" >College Status: {{ diplomaCollege.college_status }}</p></li>
         	<li><p class="card-text unorder-list-item" >Location: {{ diplomaCollege.city_name }}, {{ diplomaCollege.state_name }}</p></li>
         	<li><p class="card-text unorder-list-item" >College Type: {{ diplomaCollege.get_college_type_display }}</p></li>
         	<li> <p class="card-text unorder-list-item" >Established On: {{ diplomaCollege.established_date }}</p></li>
