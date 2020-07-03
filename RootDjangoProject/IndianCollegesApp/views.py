@@ -222,6 +222,7 @@ def engneeringCollegesStateWise(request, state_id):
         bodyTitle = 'Engineering Colleges in ' + selectedState.state_name
     allEngneeringCollegesList = []
     collegeTypeUrlValue = "/state/" + str(state_id)
+    collegeFeesUrlValue = "/state/" + str(state_id)
     for college in allEngneeringColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -233,7 +234,7 @@ def engneeringCollegesStateWise(request, state_id):
                    'isStateNotSelected': isStateNotSelected, 'state': state,
                    'allEngneeringCollegesList': allEngneeringCollegesList,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def engneeringCollegesCityWise(request, city_id):
@@ -251,6 +252,7 @@ def engneeringCollegesCityWise(request, city_id):
         bodyTitle = 'Engineering Colleges in ' + selectedCity.city_name + ', ' + str(selectedCity.state_id)
     allEngneeringCollegesList = []
     collegeTypeUrlValue = "/city/" + str(city_id)
+    collegeFeesUrlValue = "/city/" + str(city_id)
     for college in allEngneeringColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -261,7 +263,7 @@ def engneeringCollegesCityWise(request, city_id):
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
                    'allEngneeringCollegesList': allEngneeringCollegesList,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def engneeringCollegesStateCityWise(request, city_id):
@@ -282,6 +284,7 @@ def engneeringCollegesStateCityWise(request, city_id):
         bodyTitle = 'Engineering Colleges in ' + selectedCity.city_name + ', ' + selectedState.state_name
     allEngneeringCollegesList = []
     collegeTypeUrlValue = "/state/city/" + str(city_id)
+    collegeFeesUrlValue = "/state/city/" + str(city_id)
     for college in allEngneeringColleges:
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
@@ -293,7 +296,7 @@ def engneeringCollegesStateCityWise(request, city_id):
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
                    'allEngneeringCollegesList': allEngneeringCollegesList,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def iitCollegesStateWise(request, state_id):
@@ -320,7 +323,8 @@ def iitCollegesStateWise(request, state_id):
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state, 'allIITCollegesList': allIITCollegesList,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue})
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
 def iitCollegesCityWise(request, city_id):
@@ -935,6 +939,7 @@ def engineeringCollegesFilterByCollegeType(request, college_status):
     return filterByCollegeType(request, college_status, 'engneering', 'engneering_colleges.html',
                                'allEngneeringCollegesList', False)
 
+
 def iitCollegesFilterByCollegeType(request, college_status):
     return filterByCollegeType(request, college_status, 'iit', 'iit_colleges.html',
                                'allIITCollegesList', False)
@@ -1007,7 +1012,8 @@ def filterByCollegeType(request, college_status, college_type, template_name, di
 
 def engineeringCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
     return StateWiseFilterByCollegeType(request, state_id, college_status, 'engneering', 'engneering_colleges.html',
-                                       'allEngneeringCollegesList', False)
+                                        'allEngneeringCollegesList', False)
+
 
 def iitCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
     return StateWiseFilterByCollegeType(request, state_id, college_status, 'iit', 'iit_colleges.html',
@@ -1087,6 +1093,7 @@ def engineeringCollegesCityWiseFilterByCollegeType(request, city_id, college_sta
     return cityWiseFilterByCollegeType(request, city_id, college_status, 'engneering', 'engneering_colleges.html',
                                        'allEngneeringCollegesList', False)
 
+
 def iitCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
     return cityWiseFilterByCollegeType(request, city_id, college_status, 'iit', 'iit_colleges.html',
                                        'allIITCollegesList', False)
@@ -1165,6 +1172,7 @@ def engineeringCollegesStateCityWiseFilterByCollegeType(request, city_id, colleg
     return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'engneering', 'engneering_colleges.html',
                                             'allEngneeringCollegesList', False)
 
+
 def iitCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
     return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'iit', 'iit_colleges.html',
                                             'allIITCollegesList', False)
@@ -1196,7 +1204,8 @@ def topMedicalCollegesStateCityWiseFilterByCollegeType(request, city_id, college
 
 
 def topEngineeringCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
-    return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'engneering', 'top_engneering_colleges.html',
+    return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'engneering',
+                                            'top_engneering_colleges.html',
                                             'topEngneeringCollegesList', True)
 
 
@@ -1240,6 +1249,296 @@ def stateCityWiseFilterByCollegeType(request, city_id, college_status, college_t
                    dictionary_key_name: allCollegesList,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'selectedLink': selectedLink})
+
+
+def engineeringCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
+    return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'engneering',
+                                'engneering_colleges.html', 'allEngneeringCollegesList', False)
+
+
+def filterBySemesterFees(request, lower_value, higher_value, selected_link_number, college_type, template_name,
+                         dictionary_key_name, isRequestForTopColleges):
+    allStatesListForDropdown = list(AllStates.objects.all())
+    allCitiesList = list(AllCities.objects.all())
+    firstState = allStatesListForDropdown.pop(0)
+    otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
+                        allStatesListForDropdown.pop(0)]
+    isStateNotSelected = True
+    if isRequestForTopColleges:
+        if higher_value == 'greater':
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     college_fees_per_semester__gt=lower_value).order_by(
+                '-college_rank')
+
+        elif higher_value == 'less':
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     college_fees_per_semester__lte=lower_value).order_by(
+                '-college_rank')
+
+        else:
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     college_fees_per_semester__gte=lower_value,
+                                                     college_fees_per_semester__lte=higher_value).order_by(
+                '-college_rank')
+
+    else:
+        if higher_value == 'greater':
+            allColleges = AllColleges.objects.filter(college_type=college_type,
+                                                     college_fees_per_semester__gt=lower_value).order_by(
+                '-college_rank')
+
+        elif higher_value == 'less':
+            allColleges = AllColleges.objects.filter(college_type=college_type,
+                                                     college_fees_per_semester__lte=lower_value).order_by(
+                '-college_rank')
+
+        else:
+            allColleges = AllColleges.objects.filter(college_type=college_type,
+                                                     college_fees_per_semester__gte=lower_value,
+                                                     college_fees_per_semester__lte=higher_value).order_by(
+                '-college_rank')
+
+    bodyTitle = 'College not Found in this Fees'
+    if len(allColleges) > 0:
+        bodyTitle = str.capitalize(
+            college_type) + ' Colleges Semester Fees in between ' + lower_value + ' to ' + higher_value
+    allCollegesList = []
+    for college in allColleges:
+        imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
+        college.college_images_url = imagesUrl
+        allCollegesList.append(college)
+    return render(request, 'IndianCollegesApp/' + template_name,
+                  {'firstState': firstState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown,
+                   'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
+                   dictionary_key_name: allCollegesList,
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'feesSelectedLink': selected_link_number})
+
+
+def engineeringCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
+                                                     selected_link_number):
+    return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
+                                         'engneering',
+                                         'engneering_colleges.html', 'allEngneeringCollegesList', False)
+
+
+def stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number, college_type,
+                                  template_name, dictionary_key_name, isRequestForTopColleges):
+    allStatesListForDropdown = list(AllStates.objects.exclude(id=state_id))
+    selectedState = AllStates.objects.filter(id=state_id)
+    allCitiesList = list(AllCities.objects.filter(state_id=state_id))
+    selectedState = selectedState[0]
+    otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
+                        allStatesListForDropdown.pop(0)]
+    isStateNotSelected = False
+    if isRequestForTopColleges:
+        if higher_value == 'greater':
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     state_name=state_id,
+                                                     college_fees_per_semester__gt=lower_value).order_by(
+                '-college_rank')
+
+        elif higher_value == 'less':
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     state_name=state_id,
+                                                     college_fees_per_semester__lte=lower_value).order_by(
+                '-college_rank')
+
+        else:
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     state_name=state_id,
+                                                     college_fees_per_semester__gte=lower_value,
+                                                     college_fees_per_semester__lte=higher_value).order_by(
+                '-college_rank')
+
+    else:
+        if higher_value == 'greater':
+            allColleges = AllColleges.objects.filter(college_type=college_type, state_name=state_id,
+                                                     college_fees_per_semester__gt=lower_value).order_by(
+                '-college_rank')
+
+        elif higher_value == 'less':
+            allColleges = AllColleges.objects.filter(college_type=college_type, state_name=state_id,
+                                                     college_fees_per_semester__lte=lower_value).order_by(
+                '-college_rank')
+
+        else:
+            allColleges = AllColleges.objects.filter(college_type=college_type, state_name=state_id,
+                                                     college_fees_per_semester__gte=lower_value,
+                                                     college_fees_per_semester__lte=higher_value).order_by(
+                '-college_rank')
+    bodyTitle = 'College is not Found of this State in this Fees Range'
+    if len(allColleges) > 0:
+        bodyTitle = str.capitalize(
+            college_type) + ' Colleges Semester Fees in between ' + lower_value + ' to ' + higher_value + ' in ' + selectedState.state_name
+    allCollegesList = []
+    collegeTypeUrlValue = "/state/" + str(state_id)
+    collegeFeesUrlValue = "/state/" + str(state_id)
+    for college in allColleges:
+        imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
+        college.college_images_url = imagesUrl
+        allCollegesList.append(college)
+    state = "/state"
+    return render(request, 'IndianCollegesApp/' + template_name,
+                  {'selectedState': selectedState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
+                   'isStateNotSelected': isStateNotSelected, 'state': state,
+                   dictionary_key_name: allCollegesList,
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue,
+                   'feesSelectedLink': selected_link_number})
+
+
+def engineeringCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
+    return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'engneering',
+                                        'engneering_colleges.html', 'allEngneeringCollegesList', False)
+
+
+def cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, college_type,
+                                 template_name, dictionary_key_name, isRequestForTopColleges):
+    allStatesListForDropdown = list(AllStates.objects.all())
+    allCitiesList = list(AllCities.objects.all())
+    selectedCity = AllCities.objects.get(id=city_id)
+    firstState = allStatesListForDropdown.pop(0)
+    otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
+                        allStatesListForDropdown.pop(0)]
+    isStateNotSelected = True
+    if isRequestForTopColleges:
+        if higher_value == 'greater':
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     city_name=city_id,
+                                                     college_fees_per_semester__gt=lower_value).order_by(
+                '-college_rank')
+
+        elif higher_value == 'less':
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     city_name=city_id,
+                                                     college_fees_per_semester__lte=lower_value).order_by(
+                '-college_rank')
+
+        else:
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     city_name=city_id,
+                                                     college_fees_per_semester__gte=lower_value,
+                                                     college_fees_per_semester__lte=higher_value).order_by(
+                '-college_rank')
+
+    else:
+        if higher_value == 'greater':
+            allColleges = AllColleges.objects.filter(college_type=college_type, city_name=city_id,
+                                                     college_fees_per_semester__gt=lower_value).order_by(
+                '-college_rank')
+
+        elif higher_value == 'less':
+            allColleges = AllColleges.objects.filter(college_type=college_type, city_name=city_id,
+                                                     college_fees_per_semester__lte=lower_value).order_by(
+                '-college_rank')
+
+        else:
+            allColleges = AllColleges.objects.filter(college_type=college_type, city_name=city_id,
+                                                     college_fees_per_semester__gte=lower_value,
+                                                     college_fees_per_semester__lte=higher_value).order_by(
+                '-college_rank')
+
+    bodyTitle = 'College is not Found of this City in this Fees Range'
+    if len(allColleges) > 0:
+        bodyTitle = str.capitalize(
+            college_type) + ' Colleges Semester Fees in between ' + lower_value + ' to ' + higher_value + ' in ' + selectedCity.city_name + ', ' + str(
+            selectedCity.state_id)
+    allCollegesList = []
+    collegeTypeUrlValue = "/city/" + str(city_id)
+    collegeFeesUrlValue = "/city/" + str(city_id)
+    for college in allColleges:
+        imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
+        college.college_images_url = imagesUrl
+        allCollegesList.append(college)
+    return render(request, 'IndianCollegesApp/' + template_name,
+                  {'firstState': firstState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
+                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
+                   dictionary_key_name: allCollegesList,
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue,
+                   'feesSelectedLink': selected_link_number})
+
+
+def engineeringCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
+                                                         selected_link_number):
+    return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
+                                             'engneering',
+                                             'engneering_colleges.html', 'allEngneeringCollegesList', False)
+
+
+def stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, college_type,
+                                      template_name, dictionary_key_name, isRequestForTopColleges):
+    obj = AllCities.objects.get(id=city_id)
+    state_id = obj.state_id_id
+    allStatesListForDropdown = list(AllStates.objects.exclude(id=state_id))
+    selectedState = AllStates.objects.filter(id=state_id)
+    selectedCity = AllCities.objects.get(id=city_id)
+    allCitiesList = list(AllCities.objects.filter(state_id=state_id))
+    selectedState = selectedState[0]
+    otherThreeStates = [allStatesListForDropdown.pop(0), allStatesListForDropdown.pop(0),
+                        allStatesListForDropdown.pop(0)]
+    isStateNotSelected = False
+    if isRequestForTopColleges:
+        if higher_value == 'greater':
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     city_name=city_id,
+                                                     college_fees_per_semester__gt=lower_value).order_by(
+                '-college_rank')
+
+        elif higher_value == 'less':
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     city_name=city_id,
+                                                     college_fees_per_semester__lte=lower_value).order_by(
+                '-college_rank')
+
+        else:
+            allColleges = AllColleges.objects.filter(college_type=college_type, college_rank__gte=4,
+                                                     city_name=city_id,
+                                                     college_fees_per_semester__gte=lower_value,
+                                                     college_fees_per_semester__lte=higher_value).order_by(
+                '-college_rank')
+
+    else:
+        if higher_value == 'greater':
+            allColleges = AllColleges.objects.filter(college_type=college_type, city_name=city_id,
+                                                     college_fees_per_semester__gt=lower_value).order_by(
+                '-college_rank')
+
+        elif higher_value == 'less':
+            allColleges = AllColleges.objects.filter(college_type=college_type, city_name=city_id,
+                                                     college_fees_per_semester__lte=lower_value).order_by(
+                '-college_rank')
+
+        else:
+            allColleges = AllColleges.objects.filter(college_type=college_type, city_name=city_id,
+                                                     college_fees_per_semester__gte=lower_value,
+                                                     college_fees_per_semester__lte=higher_value).order_by(
+                '-college_rank')
+    bodyTitle = 'College is not Found of this City in this Fees Range'
+    if len(allColleges) > 0:
+        bodyTitle = str.capitalize(
+            college_type) + ' Colleges Semester Fees in between ' + lower_value + ' to ' + higher_value + ' in ' + selectedCity.city_name + ', ' + str(
+            selectedCity.state_id)
+    allCollegesList = []
+    collegeTypeUrlValue = "/state/city/" + str(city_id)
+    collegeFeesUrlValue = "/state/city/" + str(city_id)
+    for college in allColleges:
+        imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
+        college.college_images_url = imagesUrl
+        allCollegesList.append(college)
+    state = "/state"
+    return render(request, 'IndianCollegesApp/' + template_name,
+                  {'selectedState': selectedState, 'allCitiesList': allCitiesList,
+                   'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
+                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
+                   dictionary_key_name: allCollegesList,
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'feesSelectedLink': selected_link_number,
+                   'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
 def getBottomCardsObjectList():

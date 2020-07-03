@@ -115,6 +115,16 @@ urlpatterns = [
          views.topEngineeringCollegesCityWiseFilterByCollegeType),
     path('top-engineering-colleges/state/city/<int:city_id>/college-type/<str:college_status>',
          views.topEngineeringCollegesStateCityWiseFilterByCollegeType),
+
+
+    path('engineering-colleges/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>', views.engineeringCollegesFilterBySemesterFees),
+    path('engineering-colleges/state/<int:state_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+         views.engineeringCollegesStateWiseFilterBySemesterFees),
+    path('engineering-colleges/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+         views.engineeringCollegesCityWiseFilterBySemesterFees),
+    path('engineering-colleges/state/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+         views.engineeringCollegesStateCityWiseFilterBySemesterFees),
+
 ]
 
 
