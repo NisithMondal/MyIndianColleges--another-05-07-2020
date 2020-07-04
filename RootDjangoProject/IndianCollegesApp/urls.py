@@ -125,6 +125,15 @@ urlpatterns = [
     path('engineering-colleges/state/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
          views.engineeringCollegesStateCityWiseFilterBySemesterFees),
 
+    path('iit-colleges/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+         views.iitCollegesFilterBySemesterFees),
+    path('iit-colleges/state/<int:state_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.iitCollegesStateWiseFilterBySemesterFees),
+    path('iit-colleges/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.iitCollegesCityWiseFilterBySemesterFees),
+    path('iit-colleges/state/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.iitCollegesStateCityWiseFilterBySemesterFees),
+
     path('medical-colleges/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
          views.medicalCollegesFilterBySemesterFees),
     path('medical-colleges/state/<int:state_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
@@ -142,6 +151,17 @@ urlpatterns = [
         views.diplomaCollegesCityWiseFilterBySemesterFees),
     path('diploma-colleges/state/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
         views.diplomaCollegesStateCityWiseFilterBySemesterFees),
+
+
+    path('top-iit-colleges/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+         views.topIITCollegesFilterBySemesterFees),
+    path('top-iit-colleges/state/<int:state_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topIITCollegesStateWiseFilterBySemesterFees),
+    path('top-iit-colleges/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topIITCollegesCityWiseFilterBySemesterFees),
+    path('top-iit-colleges/state/city/<int:city_id>/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
+        views.topIITCollegesStateCityWiseFilterBySemesterFees),
+
 
     path('top-diploma-colleges/semester-fees/<str:lower_value>/<str:higher_value>/<int:selected_link_number>',
          views.topDiplomaCollegesFilterBySemesterFees),
