@@ -116,7 +116,18 @@ body{
       background-color: #0be6ab;
       padding: 10px;
   }
-
+  .highlight{
+    background-color: #0a92bf;
+    color: white;
+    margin: 2px;
+    font-size: 20px;
+  }
+  .pagination-link{
+     margin: 2px;
+     font-size: 20px;
+     color: white;
+     background-color: #5f6263;
+  }
    	 {% block navbar_item_background %}
 
    	 {% endblock %}
@@ -277,12 +288,15 @@ body{
    {% block body_title %}
    {% endblock %}
   <div class="row row-cols-1 row-cols-md-3" >
-
         {% block all_colleges %}
 
         {% endblock %}
 
 </div>
+  <div style="padding-bottom: 20px;">
+  {% block paginator %}
+  {% endblock %}
+   </div>
 </div>
 
  <!-- bellow is bottom Cards start-->

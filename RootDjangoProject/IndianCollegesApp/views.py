@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 from .models import *
 
 
-# Create your views here.
+number_of_items_in_page = 6
 
 def home(request):
     allStatesListForDropdown = list(AllStates.objects.all())
@@ -35,11 +36,17 @@ def engneeringColleges(request):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allEngneeringCollegesList.append(college)
+    isListEmpty = False
+    if len(allEngneeringCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allEngneeringCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/engneering_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
-                   'allEngneeringCollegesList': allEngneeringCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle})
 
 
@@ -59,12 +66,18 @@ def iitColleges(request):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allIITCollegesList.append(college)
+    isListEmpty = False
+    if len(allIITCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allIITCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/iit_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
-                   'allIITCollegesList': allIITCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle})
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
+                   'bodyTitle': bodyTitle, 'isListEmpty': isListEmpty})
 
 
 def medicalColleges(request):
@@ -83,12 +96,19 @@ def medicalColleges(request):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allMedicalCollegesList.append(college)
+    isListEmpty = False
+    if len(allMedicalCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allMedicalCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
+
     return render(request, 'IndianCollegesApp/medical_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'allMedicalCollegesList': allMedicalCollegesList,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle})
+                   'isStateNotSelected': isStateNotSelected, 'pageObj': page_obj,
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'isListEmpty': isListEmpty})
 
 
 def diplomaColleges(request):
@@ -107,12 +127,18 @@ def diplomaColleges(request):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allDiplomaCollegesList.append(college)
+    isListEmpty = False
+    if len(allDiplomaCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allDiplomaCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/diploma_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'allDiplomaCollegesList': allDiplomaCollegesList,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle})
+                   'isStateNotSelected': isStateNotSelected, 'pageObj': page_obj,
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'isListEmpty': isListEmpty})
 
 
 def topIITColleges(request):
@@ -236,11 +262,17 @@ def engneeringCollegesStateWise(request, state_id):
         college.college_images_url = imagesUrl
         allEngneeringCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(allEngneeringCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allEngneeringCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/engneering_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'allEngneeringCollegesList': allEngneeringCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
@@ -265,11 +297,17 @@ def engneeringCollegesCityWise(request, city_id):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allEngneeringCollegesList.append(college)
+    isListEmpty = False
+    if len(allEngneeringCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allEngneeringCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/engneering_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'allEngneeringCollegesList': allEngneeringCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
@@ -298,11 +336,17 @@ def engneeringCollegesStateCityWise(request, city_id):
         college.college_images_url = imagesUrl
         allEngneeringCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(allEngneeringCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allEngneeringCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/engneering_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'allEngneeringCollegesList': allEngneeringCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
@@ -328,11 +372,17 @@ def iitCollegesStateWise(request, state_id):
         college.college_images_url = imagesUrl
         allIITCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(allIITCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allIITCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/iit_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'state': state, 'allIITCollegesList': allIITCollegesList,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'isStateNotSelected': isStateNotSelected, 'state': state, 'pageObj': page_obj,
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'isListEmpty': isListEmpty,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
@@ -356,11 +406,17 @@ def iitCollegesCityWise(request, city_id):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allIITCollegesList.append(college)
+    isListEmpty = False
+    if len(allIITCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allIITCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/iit_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'allIITCollegesList': allIITCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
+                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'isListEmpty': isListEmpty,
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
                    'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
@@ -388,12 +444,19 @@ def iitCollegesStateCityWise(request, city_id):
         college.college_images_url = imagesUrl
         allIITCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(allIITCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allIITCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/iit_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'allIITCollegesList': allIITCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue,
+                   'collegeFeesUrlValue': collegeFeesUrlValue, 'isListEmpty': isListEmpty})
 
 
 def medicalCollegesStateWise(request, state_id):
@@ -417,12 +480,18 @@ def medicalCollegesStateWise(request, state_id):
     state = "/state"
     collegeTypeUrlValue = "/state/" + str(state_id)
     collegeFeesUrlValue = "/state/" + str(state_id)
+    isListEmpty = False
+    if len(allMedicalCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allMedicalCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/medical_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'state': state, 'allMedicalCollegesList': allMedicalCollegesList,
+                   'isStateNotSelected': isStateNotSelected, 'state': state, 'pageObj': page_obj,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
-                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
+                   'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue, 'isListEmpty': isListEmpty})
 
 
 def medicalCollegesCityWise(request, city_id):
@@ -444,11 +513,17 @@ def medicalCollegesCityWise(request, city_id):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allMedicalCollegesList.append(college)
+    isListEmpty = False
+    if len(allMedicalCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allMedicalCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/medical_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'allMedicalCollegesList': allMedicalCollegesList,
+                   'pageObj': page_obj,'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
@@ -476,11 +551,17 @@ def medicalCollegesStateCityWise(request, city_id):
         college.college_images_url = imagesUrl
         allMedicalCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(allMedicalCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allMedicalCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/medical_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'allMedicalCollegesList': allMedicalCollegesList,
+                   'pageObj': page_obj,'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
@@ -506,11 +587,17 @@ def diplomaCollegesStateWise(request, state_id):
     state = "/state"
     collegeTypeUrlValue = "/state/" + str(state_id)
     collegeFeesUrlValue = "/state/" + str(state_id)
+    isListEmpty = False
+    if len(allDiplomaCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allDiplomaCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/diploma_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'state': state, 'allDiplomaCollegesList': allDiplomaCollegesList,
-                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
+                   'isStateNotSelected': isStateNotSelected, 'state': state, 'pageObj': page_obj,
+                   'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'isListEmpty': isListEmpty,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
@@ -533,11 +620,17 @@ def diplomaCollegesCityWise(request, city_id):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allDiplomaCollegesList.append(college)
+    isListEmpty = False
+    if len(allDiplomaCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allDiplomaCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/diploma_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'allDiplomaCollegesList': allDiplomaCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
@@ -565,11 +658,17 @@ def diplomaCollegesStateCityWise(request, city_id):
         college.college_images_url = imagesUrl
         allDiplomaCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(allDiplomaCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allDiplomaCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/diploma_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'allDiplomaCollegesList': allDiplomaCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
