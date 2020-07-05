@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from .models import *
 
 
-number_of_items_in_page = 6
+number_of_items_in_page = 3
 
 def home(request):
     allStatesListForDropdown = list(AllStates.objects.all())
@@ -158,12 +158,18 @@ def topIITColleges(request):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         topIITCollegesList.append(college)
+    isListEmpty = False
+    if len(topIITCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topIITCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_iit_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
-                   'topIITCollegesList': topIITCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle})
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
+                   'bodyTitle': bodyTitle, 'isListEmpty': isListEmpty})
 
 
 def topEngneeringColleges(request):
@@ -183,11 +189,17 @@ def topEngneeringColleges(request):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         topEngneeringCollegesList.append(college)
+    isListEmpty = False
+    if len(topEngneeringCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topEngneeringCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_engneering_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
-                   'topEngneeringCollegesList': topEngneeringCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle})
 
 
@@ -208,12 +220,18 @@ def topMedicalColleges(request):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         topMedicalCollegesList.append(college)
+    isListEmpty = False
+    if len(topMedicalCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topMedicalCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_medical_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
-                   'topMedicalCollegesList': topMedicalCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle})
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
+                   'bodyTitle': bodyTitle, 'isListEmpty': isListEmpty})
 
 
 def topDiplomaColleges(request):
@@ -233,12 +251,18 @@ def topDiplomaColleges(request):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         topDiplomaCollegesList.append(college)
+    isListEmpty = False
+    if len(topDiplomaCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topDiplomaCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_diploma_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
-                   'topDiplomaCollegesList': topDiplomaCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle})
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
+                   'bodyTitle': bodyTitle, 'isListEmpty': isListEmpty})
 
 
 def engneeringCollegesStateWise(request, state_id):
@@ -694,11 +718,17 @@ def topEngneeringCollegesStateWise(request, state_id):
         college.college_images_url = imagesUrl
         topEngneeringCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(topEngneeringCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topEngneeringCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_engneering_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'topEngneeringCollegesList': topEngneeringCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
@@ -723,11 +753,17 @@ def topEngneeringCollegesCityWise(request, city_id):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         topEngneeringCollegesList.append(college)
+    isListEmpty = False
+    if len(topEngneeringCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topEngneeringCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_engneering_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'topEngneeringCollegesList': topEngneeringCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
@@ -756,11 +792,17 @@ def topEngneeringCollegesStateCityWise(request, city_id):
         college.college_images_url = imagesUrl
         topEngneeringCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(topEngneeringCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topEngneeringCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_engneering_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'topEngneeringCollegesList': topEngneeringCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
@@ -786,11 +828,17 @@ def topMedicalCollegesStateWise(request, state_id):
         college.college_images_url = imagesUrl
         topMedicalCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(topMedicalCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topMedicalCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_medical_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'topMedicalCollegesList': topMedicalCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
+                   'isStateNotSelected': isStateNotSelected, 'state': state, 'isListEmpty': isListEmpty,
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
                    'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
@@ -814,11 +862,17 @@ def topMedicalCollegesCityWise(request, city_id):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         topMedicalCollegesList.append(college)
+    isListEmpty = False
+    if len(topMedicalCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topMedicalCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_medical_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'topMedicalCollegesList': topMedicalCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
+                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'isListEmpty': isListEmpty,
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
                    'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
@@ -846,12 +900,19 @@ def topMedicalCollegesStateCityWise(request, city_id):
         college.college_images_url = imagesUrl
         topMedicalCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(topMedicalCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topMedicalCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_medical_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'topMedicalCollegesList': topMedicalCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue,
+                   'collegeFeesUrlValue': collegeFeesUrlValue, 'isListEmpty': isListEmpty})
 
 
 def topDiplomaCollegesStateWise(request, state_id):
@@ -875,11 +936,17 @@ def topDiplomaCollegesStateWise(request, state_id):
         college.college_images_url = imagesUrl
         topDiplomaCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(topDiplomaCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topDiplomaCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_diploma_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'topDiplomaCollegesList': topDiplomaCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
+                   'isStateNotSelected': isStateNotSelected, 'state': state, 'isListEmpty': isListEmpty,
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
                    'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
@@ -903,11 +970,17 @@ def topDiplomaCollegesCityWise(request, city_id):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         topDiplomaCollegesList.append(college)
+    isListEmpty = False
+    if len(topDiplomaCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topDiplomaCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_diploma_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'topDiplomaCollegesList': topDiplomaCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
+                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'isListEmpty': isListEmpty,
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
                    'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
@@ -935,12 +1008,19 @@ def topDiplomaCollegesStateCityWise(request, city_id):
         college.college_images_url = imagesUrl
         topDiplomaCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(topDiplomaCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topDiplomaCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_diploma_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'topDiplomaCollegesList': topDiplomaCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
-                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
+                   'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue,
+                   'collegeFeesUrlValue': collegeFeesUrlValue, 'isListEmpty': isListEmpty})
 
 
 def topIITCollegesStateWise(request, state_id):
@@ -964,11 +1044,17 @@ def topIITCollegesStateWise(request, state_id):
         college.college_images_url = imagesUrl
         topIITCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(topIITCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topIITCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_iit_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'state': state,
-                   'topIITCollegesList': topIITCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
+                   'isStateNotSelected': isStateNotSelected, 'state': state, 'isListEmpty': isListEmpty,
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
                    'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
@@ -992,11 +1078,17 @@ def topIITCollegesCityWise(request, city_id):
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         topIITCollegesList.append(college)
+    isListEmpty = False
+    if len(topIITCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topIITCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_iit_colleges.html',
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
-                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   'topIITCollegesList': topIITCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
+                   'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'isListEmpty': isListEmpty,
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(),
                    'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
@@ -1024,11 +1116,17 @@ def topIITCollegesStateCityWise(request, city_id):
         college.college_images_url = imagesUrl
         topIITCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(topIITCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(topIITCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/top_iit_colleges.html',
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   'topIITCollegesList': topIITCollegesList, 'bottomCardLists': getBottomCardsObjectList(),
+                   'pageObj': page_obj, 'bottomCardLists': getBottomCardsObjectList(), 'isListEmpty': isListEmpty,
                    'bodyTitle': bodyTitle, 'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue})
 
 
@@ -1118,47 +1216,38 @@ def topBestIITColleges(request):
 
 
 def engineeringCollegesFilterByCollegeType(request, college_status):
-    return filterByCollegeType(request, college_status, 'engneering', 'engneering_colleges.html',
-                               'allEngneeringCollegesList', False)
+    return filterByCollegeType(request, college_status, 'engneering', 'engneering_colleges.html', False)
 
 
 def iitCollegesFilterByCollegeType(request, college_status):
-    return filterByCollegeType(request, college_status, 'iit', 'iit_colleges.html',
-                               'allIITCollegesList', False)
+    return filterByCollegeType(request, college_status, 'iit', 'iit_colleges.html', False)
 
 
 def medicalCollegesFilterByCollegeType(request, college_status):
-    return filterByCollegeType(request, college_status, 'medical', 'medical_colleges.html',
-                               'allMedicalCollegesList', False)
+    return filterByCollegeType(request, college_status, 'medical', 'medical_colleges.html', False)
 
 
 def diplomaCollegesFilterByCollegeType(request, college_status):
-    return filterByCollegeType(request, college_status, 'diploma', 'diploma_colleges.html',
-                               'allDiplomaCollegesList', False)
+    return filterByCollegeType(request, college_status, 'diploma', 'diploma_colleges.html', False)
 
 
 def topIITCollegesFilterByCollegeType(request, college_status):
-    return filterByCollegeType(request, college_status, 'iit', 'top_iit_colleges.html',
-                               'topIITCollegesList', True)
+    return filterByCollegeType(request, college_status, 'iit', 'top_iit_colleges.html', True)
 
 
 def topDiplomaCollegesFilterByCollegeType(request, college_status):
-    return filterByCollegeType(request, college_status, 'diploma', 'top_diploma_colleges.html',
-                               'topDiplomaCollegesList', True)
+    return filterByCollegeType(request, college_status, 'diploma', 'top_diploma_colleges.html', True)
 
 
 def topMedicalCollegesFilterByCollegeType(request, college_status):
-    return filterByCollegeType(request, college_status, 'medical', 'top_medical_colleges.html',
-                               'topMedicalCollegesList', True)
+    return filterByCollegeType(request, college_status, 'medical', 'top_medical_colleges.html', True)
 
 
 def topEngineeringCollegesFilterByCollegeType(request, college_status):
-    return filterByCollegeType(request, college_status, 'engneering', 'top_engneering_colleges.html',
-                               'topEngneeringCollegesList', True)
+    return filterByCollegeType(request, college_status, 'engneering', 'top_engneering_colleges.html', True)
 
 
-def filterByCollegeType(request, college_status, college_type, template_name, dictionary_key_name,
-                        isRequestForTopColleges):
+def filterByCollegeType(request, college_status, college_type, template_name, isRequestForTopColleges):
     allStatesListForDropdown = list(AllStates.objects.all())
     allCitiesList = list(AllCities.objects.all())
     firstState = allStatesListForDropdown.pop(0)
@@ -1184,56 +1273,53 @@ def filterByCollegeType(request, college_status, college_type, template_name, di
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allCollegesList.append(college)
+    isListEmpty = False
+    if len(allCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/' + template_name,
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
-                   dictionary_key_name: allCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'selectedLink': selectedLink})
 
 
 def engineeringCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
-    return StateWiseFilterByCollegeType(request, state_id, college_status, 'engneering', 'engneering_colleges.html',
-                                        'allEngneeringCollegesList', False)
+    return StateWiseFilterByCollegeType(request, state_id, college_status, 'engneering', 'engneering_colleges.html', False)
 
 
 def iitCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
-    return StateWiseFilterByCollegeType(request, state_id, college_status, 'iit', 'iit_colleges.html',
-                                        'allIITCollegesList', False)
+    return StateWiseFilterByCollegeType(request, state_id, college_status, 'iit', 'iit_colleges.html', False)
 
 
 def medicalCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
-    return StateWiseFilterByCollegeType(request, state_id, college_status, 'medical', 'medical_colleges.html',
-                                        'allMedicalCollegesList', False)
+    return StateWiseFilterByCollegeType(request, state_id, college_status, 'medical', 'medical_colleges.html', False)
 
 
 def diplomaCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
-    return StateWiseFilterByCollegeType(request, state_id, college_status, 'diploma', 'diploma_colleges.html',
-                                        'allDiplomaCollegesList', False)
+    return StateWiseFilterByCollegeType(request, state_id, college_status, 'diploma', 'diploma_colleges.html', False)
 
 
 def topIITCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
-    return StateWiseFilterByCollegeType(request, state_id, college_status, 'iit', 'top_iit_colleges.html',
-                                        'topIITCollegesList', True)
+    return StateWiseFilterByCollegeType(request, state_id, college_status, 'iit', 'top_iit_colleges.html', True)
 
 
 def topDiplomaCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
-    return StateWiseFilterByCollegeType(request, state_id, college_status, 'diploma', 'top_diploma_colleges.html',
-                                        'topDiplomaCollegesList', True)
+    return StateWiseFilterByCollegeType(request, state_id, college_status, 'diploma', 'top_diploma_colleges.html', True)
 
 
 def topMedicalCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
-    return StateWiseFilterByCollegeType(request, state_id, college_status, 'medical', 'top_medical_colleges.html',
-                                        'topMedicalCollegesList', True)
+    return StateWiseFilterByCollegeType(request, state_id, college_status, 'medical', 'top_medical_colleges.html', True)
 
 
 def topEngineeringCollegesStateWiseFilterByCollegeType(request, state_id, college_status):
-    return StateWiseFilterByCollegeType(request, state_id, college_status, 'engneering', 'top_engneering_colleges.html',
-                                        'topEngneeringCollegesList', True)
+    return StateWiseFilterByCollegeType(request, state_id, college_status, 'engneering', 'top_engneering_colleges.html', True)
 
 
-def StateWiseFilterByCollegeType(request, state_id, college_status, college_type, templet_name, dictionary_key_name,
-                                 isRequestForTopColleges):
+def StateWiseFilterByCollegeType(request, state_id, college_status, college_type, templet_name, isRequestForTopColleges):
     allStatesListForDropdown = list(AllStates.objects.exclude(id=state_id))
     selectedState = AllStates.objects.filter(id=state_id)
     allCitiesList = list(AllCities.objects.filter(state_id=state_id))
@@ -1262,57 +1348,54 @@ def StateWiseFilterByCollegeType(request, state_id, college_status, college_type
         college.college_images_url = imagesUrl
         allCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(allCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/' + templet_name,
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
-                   dictionary_key_name: allCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'selectedLink': selectedLink})
 
 
 def engineeringCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
-    return cityWiseFilterByCollegeType(request, city_id, college_status, 'engneering', 'engneering_colleges.html',
-                                       'allEngneeringCollegesList', False)
+    return cityWiseFilterByCollegeType(request, city_id, college_status, 'engneering', 'engneering_colleges.html', False)
 
 
 def iitCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
-    return cityWiseFilterByCollegeType(request, city_id, college_status, 'iit', 'iit_colleges.html',
-                                       'allIITCollegesList', False)
+    return cityWiseFilterByCollegeType(request, city_id, college_status, 'iit', 'iit_colleges.html', False)
 
 
 def medicalCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
-    return cityWiseFilterByCollegeType(request, city_id, college_status, 'medical', 'medical_colleges.html',
-                                       'allMedicalCollegesList', False)
+    return cityWiseFilterByCollegeType(request, city_id, college_status, 'medical', 'medical_colleges.html', False)
 
 
 def diplomaCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
-    return cityWiseFilterByCollegeType(request, city_id, college_status, 'diploma', 'diploma_colleges.html',
-                                       'allDiplomaCollegesList', False)
+    return cityWiseFilterByCollegeType(request, city_id, college_status, 'diploma', 'diploma_colleges.html', False)
 
 
 def topIITCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
-    return cityWiseFilterByCollegeType(request, city_id, college_status, 'iit', 'top_iit_colleges.html',
-                                       'topIITCollegesList', True)
+    return cityWiseFilterByCollegeType(request, city_id, college_status, 'iit', 'top_iit_colleges.html', True)
 
 
 def topDiplomaCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
-    return cityWiseFilterByCollegeType(request, city_id, college_status, 'diploma', 'top_diploma_colleges.html',
-                                       'topDiplomaCollegesList', True)
+    return cityWiseFilterByCollegeType(request, city_id, college_status, 'diploma', 'top_diploma_colleges.html', True)
 
 
 def topMedicalCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
-    return cityWiseFilterByCollegeType(request, city_id, college_status, 'medical', 'top_medical_colleges.html',
-                                       'topMedicalCollegesList', True)
+    return cityWiseFilterByCollegeType(request, city_id, college_status, 'medical', 'top_medical_colleges.html', True)
 
 
 def topEngineeringCollegesCityWiseFilterByCollegeType(request, city_id, college_status):
-    return cityWiseFilterByCollegeType(request, city_id, college_status, 'engneering', 'top_engneering_colleges.html',
-                                       'topEngneeringCollegesList', True)
+    return cityWiseFilterByCollegeType(request, city_id, college_status, 'engneering', 'top_engneering_colleges.html', True)
 
 
-def cityWiseFilterByCollegeType(request, city_id, college_status, college_type, templet_name, dictionary_key_name,
-                                isRequestForTopColleges):
+def cityWiseFilterByCollegeType(request, city_id, college_status, college_type, templet_name, isRequestForTopColleges):
     allStatesListForDropdown = list(AllStates.objects.all())
     allCitiesList = list(AllCities.objects.all())
     selectedCity = AllCities.objects.get(id=city_id)
@@ -1341,57 +1424,63 @@ def cityWiseFilterByCollegeType(request, city_id, college_status, college_type, 
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allCollegesList.append(college)
+    isListEmpty = False
+    if len(allCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/' + templet_name,
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   dictionary_key_name: allCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle, 'selectedLink': selectedLink,
                    'collegeTypeUrlValue': collegeTypeUrlValue})
 
 
 def engineeringCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
     return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'engneering', 'engneering_colleges.html',
-                                            'allEngneeringCollegesList', False)
+                                             False)
 
 
 def iitCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
     return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'iit', 'iit_colleges.html',
-                                            'allIITCollegesList', False)
+                                             False)
 
 
 def medicalCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
     return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'medical', 'medical_colleges.html',
-                                            'allMedicalCollegesList', False)
+                                             False)
 
 
 def diplomaCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
     return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'diploma', 'diploma_colleges.html',
-                                            'allDiplomaCollegesList', False)
+                                             False)
 
 
 def topIITCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
     return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'iit', 'top_iit_colleges.html',
-                                            'topIITCollegesList', True)
+                                             True)
 
 
 def topDiplomaCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
     return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'diploma', 'top_diploma_colleges.html',
-                                            'topDiplomaCollegesList', True)
+                                             True)
 
 
 def topMedicalCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
     return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'medical', 'top_medical_colleges.html',
-                                            'topMedicalCollegesList', True)
+                                             True)
 
 
 def topEngineeringCollegesStateCityWiseFilterByCollegeType(request, city_id, college_status):
     return stateCityWiseFilterByCollegeType(request, city_id, college_status, 'engneering',
                                             'top_engneering_colleges.html',
-                                            'topEngneeringCollegesList', True)
+                                             True)
 
 
-def stateCityWiseFilterByCollegeType(request, city_id, college_status, college_type, template_name, dictionary_key_name,
+def stateCityWiseFilterByCollegeType(request, city_id, college_status, college_type, template_name,
                                      isRequestForTopColleges):
     obj = AllCities.objects.get(id=city_id)
     state_id = obj.state_id_id
@@ -1424,54 +1513,60 @@ def stateCityWiseFilterByCollegeType(request, city_id, college_status, college_t
         college.college_images_url = imagesUrl
         allCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(allCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/' + template_name,
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   dictionary_key_name: allCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'selectedLink': selectedLink})
 
 
 def engineeringCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
     return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'engneering',
-                                'engneering_colleges.html', 'allEngneeringCollegesList', False)
+                                'engneering_colleges.html', False)
 
 def iitCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
     return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'iit',
-                                'iit_colleges.html', 'allIITCollegesList', False)
+                                'iit_colleges.html', False)
 
 def medicalCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
     return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'medical',
-                                'medical_colleges.html', 'allMedicalCollegesList', False)
+                                'medical_colleges.html', False)
 
 
 def diplomaCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
     return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'diploma',
-                                'diploma_colleges.html', 'allDiplomaCollegesList', False)
+                                'diploma_colleges.html', False)
 
 def topIITCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
     return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'iit',
-                                'top_iit_colleges.html', 'topIITCollegesList', True)
+                                'top_iit_colleges.html', True)
 
 def topDiplomaCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
     return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'diploma',
-                                'top_diploma_colleges.html', 'topDiplomaCollegesList', True)
+                                'top_diploma_colleges.html', True)
 
 
 def topMedicalCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
     return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'medical',
-                                'top_medical_colleges.html', 'topMedicalCollegesList', True)
+                                'top_medical_colleges.html', True)
 
 
 def topEngineeringCollegesFilterBySemesterFees(request, lower_value, higher_value, selected_link_number):
     return filterBySemesterFees(request, lower_value, higher_value, selected_link_number, 'engneering',
-                                'top_engneering_colleges.html', 'topEngneeringCollegesList', True)
+                                'top_engneering_colleges.html', True)
 
 
 
 def filterBySemesterFees(request, lower_value, higher_value, selected_link_number, college_type, template_name,
-                         dictionary_key_name, isRequestForTopColleges):
+                          isRequestForTopColleges):
     allStatesListForDropdown = list(AllStates.objects.all())
     allCitiesList = list(AllCities.objects.all())
     firstState = allStatesListForDropdown.pop(0)
@@ -1521,11 +1616,17 @@ def filterBySemesterFees(request, lower_value, higher_value, selected_link_numbe
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allCollegesList.append(college)
+    isListEmpty = False
+    if len(allCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/' + template_name,
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown,
                    'otherThreeStates': otherThreeStates, 'isStateNotSelected': isStateNotSelected,
-                   dictionary_key_name: allCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'feesSelectedLink': selected_link_number})
 
@@ -1534,47 +1635,47 @@ def engineeringCollegesStateWiseFilterBySemesterFees(request, state_id, lower_va
                                                      selected_link_number):
     return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
                                          'engneering',
-                                         'engneering_colleges.html', 'allEngneeringCollegesList', False)
+                                         'engneering_colleges.html', False)
 
 
 def iitCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
                                                      selected_link_number):
     return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
                                          'iit',
-                                         'iit_colleges.html', 'allIITCollegesList', False)
+                                         'iit_colleges.html', False)
 
 
 def medicalCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
                                                      selected_link_number):
     return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
                                          'medical',
-                                         'medical_colleges.html', 'allMedicalCollegesList', False)
+                                         'medical_colleges.html', False)
 
 
 def diplomaCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
                                                      selected_link_number):
     return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
                                          'diploma',
-                                         'diploma_colleges.html', 'allDiplomaCollegesList', False)
+                                         'diploma_colleges.html', False)
 
 def topIITCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
                                                      selected_link_number):
     return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
                                          'iit',
-                                         'top_iit_colleges.html', 'topIITCollegesList', True)
+                                         'top_iit_colleges.html', True)
 
 def topDiplomaCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
                                                      selected_link_number):
     return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
                                          'diploma',
-                                         'top_diploma_colleges.html', 'topDiplomaCollegesList', True)
+                                         'top_diploma_colleges.html', True)
 
 
 def topMedicalCollegesStateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value,
                                                      selected_link_number):
     return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
                                          'medical',
-                                         'top_medical_colleges.html', 'topMedicalCollegesList', True)
+                                         'top_medical_colleges.html', True)
 
 
 
@@ -1582,13 +1683,13 @@ def topEngineeringCollegesStateWiseFilterBySemesterFees(request, state_id, lower
                                                      selected_link_number):
     return stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number,
                                          'engneering',
-                                         'top_engneering_colleges.html', 'topEngneeringCollegesList', True)
+                                         'top_engneering_colleges.html', True)
 
 
 
 
 def stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, selected_link_number, college_type,
-                                  template_name, dictionary_key_name, isRequestForTopColleges):
+                                  template_name, isRequestForTopColleges):
     allStatesListForDropdown = list(AllStates.objects.exclude(id=state_id))
     selectedState = AllStates.objects.filter(id=state_id)
     allCitiesList = list(AllCities.objects.filter(state_id=state_id))
@@ -1644,11 +1745,17 @@ def stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, 
         college.college_images_url = imagesUrl
         allCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(allCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/' + template_name,
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'state': state,
-                   dictionary_key_name: allCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue,
                    'feesSelectedLink': selected_link_number})
@@ -1656,46 +1763,46 @@ def stateWiseFilterBySemesterFees(request, state_id, lower_value, higher_value, 
 
 def engineeringCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
     return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'engneering',
-                                        'engneering_colleges.html', 'allEngneeringCollegesList', False)
+                                        'engneering_colleges.html', False)
 
 def iitCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
     return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'iit',
-                                        'iit_colleges.html', 'allIITCollegesList', False)
+                                        'iit_colleges.html', False)
 
 
 def medicalCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
     return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'medical',
-                                        'medical_colleges.html', 'allMedicalCollegesList', False)
+                                        'medical_colleges.html', False)
 
 
 def diplomaCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
     return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'diploma',
-                                        'diploma_colleges.html', 'allDiplomaCollegesList', False)
+                                        'diploma_colleges.html', False)
 
 
 def topIITCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
     return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'iit',
-                                        'top_iit_colleges.html', 'topIITCollegesList', True)
+                                        'top_iit_colleges.html', True)
 
 def topDiplomaCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
     return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'diploma',
-                                        'top_diploma_colleges.html', 'topDiplomaCollegesList', True)
+                                        'top_diploma_colleges.html', True)
 
 
 def topMedicalCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
     return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'medical',
-                                        'top_medical_colleges.html', 'topMedicalCollegesList', True)
+                                        'top_medical_colleges.html', True)
 
 
 def topEngineeringCollegesCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number):
     return cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, 'engneering',
-                                        'top_engneering_colleges.html', 'topEngneeringCollegesList', True)
+                                        'top_engneering_colleges.html', True)
 
 
 
 
 def cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, college_type,
-                                 template_name, dictionary_key_name, isRequestForTopColleges):
+                                 template_name, isRequestForTopColleges):
     allStatesListForDropdown = list(AllStates.objects.all())
     allCitiesList = list(AllCities.objects.all())
     selectedCity = AllCities.objects.get(id=city_id)
@@ -1752,11 +1859,17 @@ def cityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, se
         imagesUrl = list(CollegeImages.objects.filter(college_id=college.id))
         college.college_images_url = imagesUrl
         allCollegesList.append(college)
+    isListEmpty = False
+    if len(allCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/' + template_name,
                   {'firstState': firstState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id,
-                   dictionary_key_name: allCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'collegeFeesUrlValue': collegeFeesUrlValue,
                    'feesSelectedLink': selected_link_number})
@@ -1766,14 +1879,14 @@ def engineeringCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower
                                                          selected_link_number):
     return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
                                              'engneering',
-                                             'engneering_colleges.html', 'allEngneeringCollegesList', False)
+                                             'engneering_colleges.html', False)
 
 
 def iitCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
                                                          selected_link_number):
     return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
                                              'iit',
-                                             'iit_colleges.html', 'allIITCollegesList', False)
+                                             'iit_colleges.html', False)
 
 
 def medicalCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
@@ -1786,39 +1899,38 @@ def diplomaCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_val
                                                          selected_link_number):
     return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
                                              'diploma',
-                                             'diploma_colleges.html', 'allDiplomaCollegesList', False)
+                                             'diploma_colleges.html', False)
 
 
 def topIITCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
                                                          selected_link_number):
     return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
                                              'iit',
-                                             'top_iit_colleges.html', 'topIITCollegesList', True)
+                                             'top_iit_colleges.html', True)
 
 
 def topDiplomaCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
                                                          selected_link_number):
     return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
                                              'diploma',
-                                             'top_diploma_colleges.html', 'topDiplomaCollegesList', True)
+                                             'top_diploma_colleges.html', True)
 
 
 def topMedicalCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
                                                          selected_link_number):
     return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
                                              'medical',
-                                             'top_medical_colleges.html', 'topMedicalCollegesList', True)
+                                             'top_medical_colleges.html', True)
 
 
 def topEngineeringCollegesStateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value,
                                                          selected_link_number):
     return stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number,
-                                             'engneering',
-                                             'top_engneering_colleges.html', 'topEngneeringCollegesList', True)
+                                             'engneering', 'top_engneering_colleges.html', True)
 
 
 def stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_value, selected_link_number, college_type,
-                                      template_name, dictionary_key_name, isRequestForTopColleges):
+                                      template_name, isRequestForTopColleges):
     obj = AllCities.objects.get(id=city_id)
     state_id = obj.state_id_id
     allStatesListForDropdown = list(AllStates.objects.exclude(id=state_id))
@@ -1878,11 +1990,17 @@ def stateCityWiseFilterBySemesterFees(request, city_id, lower_value, higher_valu
         college.college_images_url = imagesUrl
         allCollegesList.append(college)
     state = "/state"
+    isListEmpty = False
+    if len(allCollegesList) == 0:
+        isListEmpty = True
+    paginator_obj = Paginator(allCollegesList, number_of_items_in_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator_obj.get_page(page_number)
     return render(request, 'IndianCollegesApp/' + template_name,
                   {'selectedState': selectedState, 'allCitiesList': allCitiesList,
                    'allStatesListForDropdown': allStatesListForDropdown, 'otherThreeStates': otherThreeStates,
                    'isStateNotSelected': isStateNotSelected, 'city_id': city_id, 'state': state,
-                   dictionary_key_name: allCollegesList,
+                   'pageObj': page_obj, 'isListEmpty': isListEmpty,
                    'bottomCardLists': getBottomCardsObjectList(), 'bodyTitle': bodyTitle,
                    'collegeTypeUrlValue': collegeTypeUrlValue, 'feesSelectedLink': selected_link_number,
                    'collegeFeesUrlValue': collegeFeesUrlValue})
